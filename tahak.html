@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="X-Robots-Tag" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Referrer-Policy" content="no-referrer">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=()">
+<title>Inovačné vzdelávanie - AI v praxi · ťahák | Inšpirácia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --orange: #E63946;
+        --orange-dark: #c52535;
+        --dark: #1B1B1B;
+        --surface-dark: #282828;
+        --bg-light: #F8F8F8;
+        --bg-white: #FFFFFF;
+        --border: #E0E0E0;
+        --text-body: #1B1B1B;
+        --text-secondary: #5A6066;
+        --red: #E63946;
+        --green: #1B1B1B;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html, body {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        color: var(--text-body);
+        background: var(--bg-light);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== PAGE LAYOUT (A4) ===== */
+    .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 20px auto;
+        background: white;
+        padding: 9mm 11mm 8mm 11mm;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+        position: relative;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding-bottom: 3mm;
+        margin-bottom: 3mm;
+        border-bottom: 2px solid var(--orange);
+    }
+    .header-left h1 {
+        font-size: 17pt;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        line-height: 1.1;
+        color: var(--dark);
+    }
+    .header-left h1 .accent { color: var(--orange); }
+    .header-left .subtitle {
+        font-size: 8.5pt;
+        color: var(--text-secondary);
+        margin-top: 1mm;
+    }
+    .header-right {
+        text-align: right;
+        font-size: 7.5pt;
+        color: var(--text-secondary);
+    }
+    .header-right .brand {
+        font-size: 10pt;
+        font-weight: 500;
+        color: var(--dark);
+        letter-spacing: -0.01em;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+        margin-bottom: 2.5mm;
+    }
+    .section-title {
+        font-size: 10pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--orange);
+        margin-bottom: 1.5mm;
+        display: flex;
+        align-items: center;
+        gap: 2mm;
+    }
+    .section-title .num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 5mm;
+        height: 5mm;
+        background: var(--orange);
+        color: white;
+        border-radius: 50%;
+        font-size: 8pt;
+        font-weight: 700;
+    }
+
+    /* ===== SECTION 1: Decision matrix ===== */
+    .decision {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2mm;
+        font-size: 8pt;
+    }
+    .decision-box {
+        padding: 2mm 2.5mm;
+        border-radius: 2mm;
+        border-left: 3px solid;
+    }
+    .decision-yes {
+        background: rgba(27,27,27,0.04);
+        border-left-color: var(--green);
+    }
+    .decision-no {
+        background: rgba(230,57,70,0.06);
+        border-left-color: var(--red);
+    }
+    .decision-box .label {
+        font-weight: 700;
+        font-size: 8.5pt;
+        margin-bottom: 0.5mm;
+    }
+    .decision-yes .label { color: var(--green); }
+    .decision-no .label { color: var(--red); }
+    .decision-box ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    .decision-box li {
+        font-size: 7.8pt;
+        line-height: 1.3;
+        padding: 0.2mm 0;
+    }
+    .decision-box li::before {
+        content: "·";
+        margin-right: 1.5mm;
+        font-weight: 700;
+    }
+
+    /* ===== SECTION 2: Prompt template ===== */
+    .prompt-template {
+        background: var(--bg-light);
+        border: 1px solid var(--border);
+        border-radius: 2mm;
+        padding: 2mm 3mm;
+        font-size: 8pt;
+    }
+    .prompt-row {
+        display: grid;
+        grid-template-columns: 18mm 1fr;
+        gap: 3mm;
+        padding: 0.7mm 0;
+        border-bottom: 1px dashed var(--border);
+    }
+    .prompt-row:last-child { border-bottom: none; }
+    .prompt-key {
+        font-weight: 700;
+        color: var(--orange);
+        font-size: 7.8pt;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+    .prompt-val {
+        font-size: 7.8pt;
+        line-height: 1.3;
+    }
+    .prompt-val .example {
+        color: var(--text-secondary);
+        font-style: italic;
+        font-size: 7.3pt;
+    }
+
+    /* ===== SECTION 3: Use cases ===== */
+    .usecase-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 2mm;
+    }
+    .usecase {
+        background: white;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--orange);
+        border-radius: 1.5mm;
+        padding: 2mm 2.5mm;
+    }
+    .usecase-title {
+        font-size: 8pt;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 1mm;
+    }
+    .usecase-steps {
+        font-size: 7.2pt;
+        line-height: 1.3;
+        color: var(--text-body);
+        list-style: none;
+        padding-left: 0;
+    }
+    .usecase-steps li {
+        padding: 0.2mm 0;
+        padding-left: 3.5mm;
+        position: relative;
+    }
+    .usecase-steps li::before {
+        content: counter(step);
+        counter-increment: step;
+        position: absolute;
+        left: 0;
+        top: 0.4mm;
+        width: 2.6mm;
+        height: 2.6mm;
+        background: var(--dark);
+        color: white;
+        border-radius: 50%;
+        font-size: 6pt;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+    }
+    .usecase-steps {
+        counter-reset: step;
+    }
+
+    /* ===== SECTION 4: Red lines ===== */
+    .redlines {
+        background: rgba(230,57,70,0.05);
+        border: 1px solid rgba(230,57,70,0.25);
+        border-radius: 2mm;
+        padding: 2mm 3mm;
+    }
+    .redlines-title {
+        font-size: 8.5pt;
+        font-weight: 700;
+        color: var(--red);
+        margin-bottom: 1mm;
+    }
+    .redlines-list {
+        list-style: none;
+        font-size: 7.8pt;
+        line-height: 1.35;
+    }
+    .redlines-list li {
+        padding: 0.3mm 0;
+        padding-left: 4.5mm;
+        position: relative;
+    }
+    .redlines-list li::before {
+        content: "✕";
+        position: absolute;
+        left: 0;
+        color: var(--red);
+        font-weight: 700;
+    }
+    .redlines-list strong { color: var(--dark); }
+
+    /* ===== SECTION 5: Improvement loop ===== */
+    .improve {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2mm;
+        font-size: 8pt;
+    }
+    .improve-step {
+        text-align: center;
+        padding: 2mm 1.5mm;
+        border: 1px solid var(--border);
+        border-radius: 1.5mm;
+        background: white;
+    }
+    .improve-step .step-icon {
+        font-size: 12pt;
+        font-weight: 700;
+        color: var(--orange);
+        line-height: 1;
+        margin-bottom: 0.6mm;
+    }
+    .improve-step .step-title {
+        font-size: 8.2pt;
+        font-weight: 700;
+        margin-bottom: 0.5mm;
+    }
+    .improve-step .step-desc {
+        font-size: 7pt;
+        line-height: 1.3;
+        color: var(--text-secondary);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+        margin-top: 3mm;
+        padding-top: 2mm;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 7pt;
+        color: var(--text-secondary);
+    }
+    .footer .contact {
+        font-weight: 500;
+        color: var(--dark);
+    }
+    .footer a {
+        color: var(--orange);
+        text-decoration: none;
+    }
+
+    /* ===== PRINT BUTTON ===== */
+    .print-btn {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        background: var(--orange);
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 999px;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(247,122,16,0.4);
+        z-index: 100;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .print-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(247,122,16,0.5);
+    }
+
+    /* ===== PRINT STYLES ===== */
+    @page {
+        size: A4;
+        margin: 0;
+    }
+    @media print {
+        html, body {
+            background: white;
+        }
+        .page {
+            margin: 0;
+            box-shadow: none;
+            width: 210mm;
+            height: 297mm;
+            min-height: 0;
+            max-height: 297mm;
+            overflow: hidden;
+            page-break-after: avoid;
+        }
+        .section { page-break-inside: avoid; }
+        .print-btn {
+            display: none;
+        }
+    }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">Vytlačiť alebo uložiť ako PDF</button>
+
+<div class="page">
+
+    <div class="header">
+        <div class="header-left">
+            <h1><span class="accent">AI</span> v praxi učiteľa - ťahák</h1>
+            <div class="subtitle">5 vecí, ktoré vám stačia na vlastný AI systém</div>
+        </div>
+        <div class="header-right">
+            <div class="brand">Inšpirácia</div>
+            <div>Inovačné vzdelávanie · 18.5.2026</div>
+        </div>
+    </div>
+
+    <!-- SECTION 1: Kedy áno, kedy nie -->
+    <div class="section">
+        <div class="section-title"><span class="num">1</span> Kedy AI áno, kedy NIE</div>
+        <div class="decision">
+            <div class="decision-box decision-yes">
+                <div class="label">Áno - AI vám pomôže</div>
+                <ul>
+                    <li>Pracovné listy a kvízy pre rôzne úrovne v triede</li>
+                    <li>Diferenciácia úloh pre slabších, talentovaných, ŠVVP</li>
+                    <li>Návrhy slovných hodnotení pred polrokom</li>
+                    <li>Príprava hodiny do cudzieho predmetu (suplovanie)</li>
+                    <li>Maily rodičom, zápisnice, sumáre</li>
+                </ul>
+            </div>
+            <div class="decision-box decision-no">
+                <div class="label">NIE - rozhodne sami</div>
+                <ul>
+                    <li>Hodnotenie konkrétnych žiakov a klasifikácia</li>
+                    <li>Disciplinárne rozhodnutia, riešenia konfliktov</li>
+                    <li>Citlivé komunikácie s rodičmi (rozvod, šikana, ŠVVP)</li>
+                    <li>Fakty, ktoré nemáte ako overiť</li>
+                    <li>Veci, kde nesiete zákonnú zodpovednosť</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: Štruktúra promptu -->
+    <div class="section">
+        <div class="section-title"><span class="num">2</span> Štruktúra dobrého promptu (4 vrstvy)</div>
+        <div class="prompt-template">
+            <div class="prompt-row">
+                <div class="prompt-key">Rola</div>
+                <div class="prompt-val">Kým má AI byť? <span class="example">napr.: Si učiteľ prírodovedy 3. ročníka ZŠ s 10-ročnou praxou.</span></div>
+            </div>
+            <div class="prompt-row">
+                <div class="prompt-key">Kontext</div>
+                <div class="prompt-val">Pre koho a v akých podmienkach? <span class="example">napr.: Trieda 23 detí, z toho 1× ADHD a 1× dyslektička. Pracujem podľa ŠVP 2023.</span></div>
+            </div>
+            <div class="prompt-row">
+                <div class="prompt-key">Úloha</div>
+                <div class="prompt-val">Čo má spraviť? <span class="example">napr.: Priprav 45-min hodinu o fotosyntéze.</span></div>
+            </div>
+            <div class="prompt-row">
+                <div class="prompt-key">Formát</div>
+                <div class="prompt-val">Ako má vyzerať výstup? <span class="example">napr.: Štruktúra: cieľ, motivácia, výklad, aktivita, zhrnutie. Časový rozpis po minútach.</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: Tri kroky -->
+    <div class="section">
+        <div class="section-title"><span class="num">3</span> Váš AI systém - 3 kroky + audit</div>
+        <div class="usecase-grid">
+            <div class="usecase">
+                <div class="usecase-title">Master prompt v Drive</div>
+                <ol class="usecase-steps">
+                    <li>Gemini: prompt „Si prompt engineer, polož 15-20 otázok pre profil učiteľa"</li>
+                    <li>Odpovedajte 9 oblastí (kto, škola, trieda, ŠVVP, štýl, NEROBÍTE, kurikulum, obmedzenia, kontext)</li>
+                    <li>Skopírujte do Drive (priečinok „AI-asistent")</li>
+                </ol>
+            </div>
+            <div class="usecase">
+                <div class="usecase-title">NotebookLM so zdrojmi</div>
+                <ol class="usecase-steps">
+                    <li>notebooklm.google.com → „+ Create"</li>
+                    <li>Nahrajte 3-5 PDF (ŠVP, TVVP, učebnica)</li>
+                    <li>Configure Chat: vlepte skrátený master prompt</li>
+                    <li>Studio → vždy kliknite Customize</li>
+                </ol>
+            </div>
+            <div class="usecase">
+                <div class="usecase-title">Gem asistent</div>
+                <ol class="usecase-steps">
+                    <li>gemini.google.com → Gems → „+ New Gem"</li>
+                    <li>Instructions: vlepte master prompt z Drive</li>
+                    <li>Knowledge: pridajte 2-3 PDF z Drive</li>
+                    <li>Test: „Priprav hodinu o [téma]"</li>
+                </ol>
+            </div>
+            <div class="usecase">
+                <div class="usecase-title">5 otázok na audit výstupu</div>
+                <ol class="usecase-steps">
+                    <li>Súlad s ŠVP? Výkonový štandard?</li>
+                    <li>Vekovo primerané?</li>
+                    <li>Stihnem za 45 min?</li>
+                    <li>Mám potrebné pomôcky?</li>
+                    <li>Pochopí žiak bez vysvetlenia?</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: Červené čiary -->
+    <div class="section">
+        <div class="section-title"><span class="num">4</span> Čo do AI NIKDY nepatrí</div>
+        <div class="redlines">
+            <ul class="redlines-list">
+                <li><strong>Mená žiakov a rodičov</strong> - vždy anonymizujte: „žiak A s ADHD" namiesto mena.</li>
+                <li><strong>Hodnotenia priradené k menám</strong> - sumár triedy bez mien je OK, „Tomáš má 3" je osobný údaj.</li>
+                <li><strong>Citlivé údaje</strong> - zdravotné, sociálne, rodinné, špeciálne potreby naviazané na meno.</li>
+                <li><strong>Identifikátory</strong> - adresy, telefóny, rodné čísla, fotografie detí, scan vysvedčenia.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SECTION 5: Ako sa zlepšovať -->
+    <div class="section">
+        <div class="section-title"><span class="num">5</span> Ako sa zlepšovať (3-krokový loop)</div>
+        <div class="improve">
+            <div class="improve-step">
+                <div class="step-icon">A</div>
+                <div class="step-title">Overte proti ŠVP</div>
+                <div class="step-desc">AI halucinuje s istotou. Pre súlad používajte NotebookLM - odpovedá len zo zdrojov.</div>
+            </div>
+            <div class="improve-step">
+                <div class="step-icon">B</div>
+                <div class="step-title">Iterujte cez chat</div>
+                <div class="step-desc">Nepíšte „vygeneruj znova". Píšte „Skráť" / „Pridaj príklad" / „Zohľadni dyslektika".</div>
+            </div>
+            <div class="improve-step">
+                <div class="step-icon">C</div>
+                <div class="step-title">Ukladajte si prompty</div>
+                <div class="step-desc">Čo fungovalo, dajte do Google Doc „Moje prompty". Z najlepších urobte ďalší Gem.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>AI je asistent, nie autor. Overte výstup pred použitím v triede.</div>
+        <div class="contact">Záverečná prezentácia: 10.6.2026, 20:00 · <a href="mailto:info@inspiracia.live">info@inspiracia.live</a></div>
+    </div>
+
+</div>
+
+</body>
+</html>
