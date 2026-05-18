@@ -42,15 +42,15 @@
             --chip-radius: 8px;
             --shadow: 0 4px 12px 0 rgba(0,0,0,0.12);
 
-            /* Typography */
-            --font-display: 60px;
-            --font-big-num: 140px;
-            --font-h1: 48px;
-            --font-h2: 32px;
-            --font-h3: 24px;
-            --font-body: 18px;
-            --font-small: 14px;
-            --font-kicker: 13px;
+            /* Typography - zväčšené o ~25% pre lepšiu čitateľnosť v Zoome (18.5.2026) */
+            --font-display: 72px;
+            --font-big-num: 160px;
+            --font-h1: 60px;
+            --font-h2: 40px;
+            --font-h3: 28px;
+            --font-body: 22px;
+            --font-small: 17px;
+            --font-kicker: 16px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -998,6 +998,54 @@
             opacity: 0.9;
             margin-bottom: 40px;
         }
+
+        /* ===== PRINT - 1 slide per A4 landscape page ===== */
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 0;
+            }
+            html, body {
+                width: 297mm;
+                height: 210mm;
+                overflow: visible !important;
+                background: white;
+            }
+            .slide {
+                position: relative !important;
+                width: 297mm !important;
+                height: 210mm !important;
+                page-break-after: always;
+                page-break-inside: avoid;
+                opacity: 1 !important;
+                visibility: visible !important;
+                display: flex !important;
+                padding: 12mm 16mm !important;
+                overflow: hidden !important;
+            }
+            .slide:last-child {
+                page-break-after: auto;
+            }
+            .slide-inner,
+            .slide-inner.wide {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+            /* Skry navigačné prvky pri tlači */
+            .nav-controls,
+            .progress-bar,
+            .keyboard-hint,
+            .slide-counter,
+            aside.notes {
+                display: none !important;
+            }
+            /* Zachovaj farby pri PDF tlači */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1051,7 +1099,7 @@ Pred štartom: Zoom záznam vypnutý, odkaz na materiály pripravený do chatu.
             </div>
         </div>
         <div style="margin-top: 32px; padding: 24px; background: var(--red-light); border-left: 4px solid var(--red); border-radius: 0 var(--card-radius) var(--card-radius) 0;">
-            <h3 style="margin: 0; font-size: 22px;">🙋 Kamera ON · mikrofón počas dema OFF · otázky do chatu kedykoľvek.</h3>
+            <h3 style="margin: 0; font-size: 26px;">🙋 Kamera ON · mikrofón počas dema OFF · otázky do chatu kedykoľvek.</h3>
         </div>
     </div>
     <aside class="notes">
@@ -1292,7 +1340,7 @@ Posledná kontrola lektora pred sekciou 1:
     <div class="slide-inner">
         <div class="kicker" style="text-align: center;">Filozofia dnešného vzdelávania</div>
         <p class="statement">Vlastný problém. <span class="accent">Vlastné riešenie.</span></p>
-        <p style="margin-top: 32px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; font-size: 22px; color: var(--text-secondary); line-height: 1.5;">Neukážeme vám všeobecné triky. Ukážeme vám, ako vyriešiť váš konkrétny opakovaný problém z vyučovania - taký, ktorý vám zaberá čas každý týždeň.</p>
+        <p style="margin-top: 32px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; font-size: 26px; color: var(--text-secondary); line-height: 1.5;">Neukážeme vám všeobecné triky. Ukážeme vám, ako vyriešiť váš konkrétny opakovaný problém z vyučovania - taký, ktorý vám zaberá čas každý týždeň.</p>
         <div style="margin-top: 32px; padding: 20px 24px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 var(--card-radius) var(--card-radius) 0; max-width: 800px; margin-left: auto; margin-right: auto;">
             <strong>Tip:</strong> Ak ste problém vyplnili vo formulári, super. Ak nie, teraz máte poslednú príležitosť - napíšte ho do chatu počas nasledujúcich minút.
         </div>
@@ -1362,7 +1410,7 @@ Tip: ak v praxi majú vágne odpovede, niekedy pomôže ten istý prompt v angli
     <div class="slide-inner wide">
         <div class="kicker">Úvod · framework</div>
         <h1>Čo AI vie a kde sa mýli.</h1>
-        <p style="color: var(--text-secondary); font-size: 14px;">Rozhodovací rámec - štyri kvadranty. Pravý dolný je o zodpovednosti, ktorú AI nikdy neunesie za vás.</p>
+        <p style="color: var(--text-secondary); font-size: 17px;">Rozhodovací rámec - štyri kvadranty. Pravý dolný je o zodpovednosti, ktorú AI nikdy neunesie za vás.</p>
         <div class="matrix-2x2" style="margin-top: 20px;">
             <div class="matrix-cell highlight">
                 <div class="cell-label">AI robí za vás</div>
@@ -1416,13 +1464,13 @@ Bridge na nasledujúci slide (3-krokový protokol):
     <div class="slide-inner wide">
         <div class="kicker">Úvod · ako AI správne používať</div>
         <h1>3-krokový protokol: ako si neoutsourcovať mozog.</h1>
-        <p style="color: var(--text-secondary); font-size: 14px;">Tri úrovne spochybnenia AI odpovede - aby ste z AI vyťažili maximum bez straty vlastného myslenia. Odporúčanie samotnej AI (Claude).</p>
+        <p style="color: var(--text-secondary); font-size: 17px;">Tri úrovne spochybnenia AI odpovede - aby ste z AI vyťažili maximum bez straty vlastného myslenia. Odporúčanie samotnej AI (Claude).</p>
 
         <div class="cards-grid cols-3" style="margin-top: 24px;">
             <div class="card" style="border-left: 4px solid var(--green);">
                 <div class="card-kicker">Úroveň 1</div>
                 <div class="card-title">Spochybni obsah</div>
-                <div class="card-body" style="font-size: 14px; line-height: 1.5;">
+                <div class="card-body" style="font-size: 17px; line-height: 1.5;">
                     Pýtaj sa AI:
                     <ul style="margin: 8px 0 0 16px; padding: 0;">
                         <li>„Prečo si zvolil/a tento prístup namiesto alternatív?"</li>
@@ -1434,7 +1482,7 @@ Bridge na nasledujúci slide (3-krokový protokol):
             <div class="card" style="border-left: 4px solid var(--blue);">
                 <div class="card-kicker">Úroveň 2</div>
                 <div class="card-title">Spochybni proces</div>
-                <div class="card-body" style="font-size: 14px; line-height: 1.5;">
+                <div class="card-body" style="font-size: 17px; line-height: 1.5;">
                     Pýtaj sa AI:
                     <ul style="margin: 8px 0 0 16px; padding: 0;">
                         <li>„Podľa akého kľúča si prioritizoval/a tieto odporúčania?"</li>
@@ -1446,7 +1494,7 @@ Bridge na nasledujúci slide (3-krokový protokol):
             <div class="card" style="border-left: 4px solid var(--orange);">
                 <div class="card-kicker">Úroveň 3</div>
                 <div class="card-title">Nájdi slepé miesta</div>
-                <div class="card-body" style="font-size: 14px; line-height: 1.5;">
+                <div class="card-body" style="font-size: 17px; line-height: 1.5;">
                     Pýtaj sa AI:
                     <ul style="margin: 8px 0 0 16px; padding: 0;">
                         <li>„Na čo sa ťa nepýtam, ale mal/a by som?"</li>
@@ -1491,7 +1539,7 @@ Zdroj: AI webinár Inšpirácia v4, kognitívna posilňovňa - princíp odporú�
     <div class="slide-inner wide">
         <div class="kicker">Úvod · kde AI pomáha</div>
         <h1>6 oblastí, kde AI šetrí čas učiteľovi.</h1>
-        <p style="color: var(--text-secondary); font-size: 14px;">Návrhy oblastí - berte ako orientáciu, nie ako garanciu. Praktická skúsenosť z dlhoročnej práce s učiteľmi.</p>
+        <p style="color: var(--text-secondary); font-size: 17px;">Návrhy oblastí - berte ako orientáciu, nie ako garanciu. Praktická skúsenosť z dlhoročnej práce s učiteľmi.</p>
         <div class="cards-grid cols-3" style="margin-top: 24px;">
             <div class="card">
                 <div class="card-kicker">📝 Príprava materiálov</div>
@@ -1597,32 +1645,32 @@ Akcent:
     <div class="slide-inner wide">
         <div class="kicker">Úvod · ako overiť AI výstup</div>
         <h1>5 kontrolných otázok pre každý AI výstup.</h1>
-        <p style="color: var(--text-secondary); font-size: 14px;">Vedieť napísať dobrý prompt je len polovica. Druhá polovica je vedieť AI výstup spätne skontrolovať.</p>
+        <p style="color: var(--text-secondary); font-size: 17px;">Vedieť napísať dobrý prompt je len polovica. Druhá polovica je vedieť AI výstup spätne skontrolovať.</p>
 
         <div class="cards-grid cols-2" style="margin-top: 20px;">
             <div class="card" style="border-left: 4px solid var(--blue);">
                 <div class="card-kicker">Otázka 1 · SÚLAD</div>
-                <div class="card-body" style="font-size: 14px;">Je výstup v súlade s inovovaným ŠVP 2023 a mojím TVVP? Ktoré výkonové štandardy pokrýva?</div>
+                <div class="card-body" style="font-size: 17px;">Je výstup v súlade s inovovaným ŠVP 2023 a mojím TVVP? Ktoré výkonové štandardy pokrýva?</div>
             </div>
             <div class="card" style="border-left: 4px solid var(--blue);">
                 <div class="card-kicker">Otázka 2 · VEKOVÁ PRIMERANOSŤ</div>
-                <div class="card-body" style="font-size: 14px;">Je jazyk a obtiažnosť primeraná pre vek mojich žiakov? Sú odborné termíny vysvetlené?</div>
+                <div class="card-body" style="font-size: 17px;">Je jazyk a obtiažnosť primeraná pre vek mojich žiakov? Sú odborné termíny vysvetlené?</div>
             </div>
             <div class="card" style="border-left: 4px solid var(--blue);">
                 <div class="card-kicker">Otázka 3 · REALIZOVATEĽNOSŤ</div>
-                <div class="card-body" style="font-size: 14px;">Dá sa to skutočne zvládnuť za 45 minút v reálnej triede? Mám všetky pomôcky?</div>
+                <div class="card-body" style="font-size: 17px;">Dá sa to skutočne zvládnuť za 45 minút v reálnej triede? Mám všetky pomôcky?</div>
             </div>
             <div class="card" style="border-left: 4px solid var(--blue);">
                 <div class="card-kicker">Otázka 4 · INKLÚZIA</div>
-                <div class="card-body" style="font-size: 14px;">Funguje to pre žiakov so ŠVVP v mojej triede? Aké úpravy musím urobiť?</div>
+                <div class="card-body" style="font-size: 17px;">Funguje to pre žiakov so ŠVVP v mojej triede? Aké úpravy musím urobiť?</div>
             </div>
             <div class="card" style="border-left: 4px solid var(--orange); grid-column: span 2;">
                 <div class="card-kicker">Otázka 5 · SLEPÉ MIESTA</div>
-                <div class="card-body" style="font-size: 14px;">Na čo sa AI sama nepýtala, ale mala by? Čo by k tomu povedal kolega s 20-ročnou praxou v odbore?</div>
+                <div class="card-body" style="font-size: 17px;">Na čo sa AI sama nepýtala, ale mala by? Čo by k tomu povedal kolega s 20-ročnou praxou v odbore?</div>
             </div>
         </div>
 
-        <div style="margin-top: 20px; padding: 14px 20px; background: var(--bg-light); border-left: 4px solid var(--green); border-radius: 0 8px 8px 0; font-size: 14px;">
+        <div style="margin-top: 20px; padding: 14px 20px; background: var(--bg-light); border-left: 4px solid var(--green); border-radius: 0 8px 8px 0; font-size: 17px;">
             <strong style="color: var(--green);">Skratka:</strong> Tieto otázky nemusíte klásť ručne. Nechajte AI, aby ich aplikovala sama na svoj výstup - tzv. „AI ako kritik vlastného materiálu".
         </div>
     </div>
@@ -1700,18 +1748,18 @@ Backup: ak Gemini nereaguje alebo padne sieť - 3 screenshoty výstupov sú v Dr
     <div class="slide-inner wide">
         <div class="kicker">Úvod · kotva</div>
         <h1>Skúšame: rovnaký prompt v Gemini bez systému.</h1>
-        <p style="color: var(--text-secondary); font-size: 14px;">Predstavte si, že chcete prípravu hodiny. Toto je prompt, ktorý budeme dnes používať. Najprv ho hodíme do bežného Gemini chatu - bez master promptu, bez NotebookLM, bez Gemu.</p>
+        <p style="color: var(--text-secondary); font-size: 17px;">Predstavte si, že chcete prípravu hodiny. Toto je prompt, ktorý budeme dnes používať. Najprv ho hodíme do bežného Gemini chatu - bez master promptu, bez NotebookLM, bez Gemu.</p>
 
-        <div style="background: var(--bg-light); padding: 20px 24px; border-radius: 12px; margin-top: 20px; font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 13px; line-height: 1.6; color: var(--text-primary);">
+        <div style="background: var(--bg-light); padding: 20px 24px; border-radius: 12px; margin-top: 20px; font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 15px; line-height: 1.6; color: var(--text-primary);">
             <strong style="color: var(--blue);">Prompt:</strong><br><br>
             „Priprav mi 45-min hodinu prírodovedy na tému fotosyntéza pre 3. ročník. Zohľadni žiakov so ŠVVP - pre každého navrhni konkrétnu úpravu. Použi výkonové štandardy z TVVP. Štruktúra: cieľ, motivácia, výklad, aktivita, zhrnutie. Časový rozpis tak, aby súčet bol presne 45 minút."
         </div>
 
-        <div style="margin-top: 20px; padding: 16px 22px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 15px;">
+        <div style="margin-top: 20px; padding: 16px 22px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 18px;">
             <strong style="color: var(--orange);">Čo dostaneme:</strong> generické názvy aktivít, fiktívne ŠVVP úpravy (AI si vymýšľa žiakov), čas nesedí, žiadne výkonové štandardy zo ŠVP. AI hádame, neoperuje s faktami.
         </div>
 
-        <div style="margin-top: 16px; padding: 14px 20px; background: var(--bg-light); border-left: 4px solid var(--green); border-radius: 0 8px 8px 0; font-size: 14px;">
+        <div style="margin-top: 16px; padding: 14px 20px; background: var(--bg-light); border-left: 4px solid var(--green); border-radius: 0 8px 8px 0; font-size: 17px;">
             <strong style="color: var(--green);">Zapamätajte si tento výstup.</strong> Na konci dnešného dňa sa k tomuto promptu vrátime. Uvidíte rozdiel medzi „generický Gemini chat" a „váš vlastný Gem s master promptom + NotebookLM zdrojmi".
         </div>
     </div>
@@ -1791,23 +1839,23 @@ Bridge na sekcia 1:
         <div class="cards-grid cols-2" style="margin-top: 28px;">
             <div class="card">
                 <div class="card-kicker">Hlavné okno</div>
-                <div class="card-body" style="font-size: 14px;">Chat input dole, história konverzácií vľavo, výber modelu hore (2.5 Flash / Pro).</div>
+                <div class="card-body" style="font-size: 17px;">Chat input dole, história konverzácií vľavo, výber modelu hore (2.5 Flash / Pro).</div>
             </div>
             <div class="card">
                 <div class="card-kicker">Gems</div>
-                <div class="card-body" style="font-size: 14px;">Vľavo v menu „Gems" - vaše vlastné AI asistenty. Tu si v sekcii 3 vytvoríte svoj Gem.</div>
+                <div class="card-body" style="font-size: 17px;">Vľavo v menu „Gems" - vaše vlastné AI asistenty. Tu si v sekcii 3 vytvoríte svoj Gem.</div>
             </div>
             <div class="card">
                 <div class="card-kicker">Canvas</div>
-                <div class="card-body" style="font-size: 14px;">Tlačidlo „Canvas" pod chat inputom - dokument vedľa chatu, kde sa živé tvorí výstup. Použijeme v deme.</div>
+                <div class="card-body" style="font-size: 17px;">Tlačidlo „Canvas" pod chat inputom - dokument vedľa chatu, kde sa živé tvorí výstup. Použijeme v deme.</div>
             </div>
             <div class="card">
                 <div class="card-kicker">Deep Research</div>
-                <div class="card-body" style="font-size: 14px;">Tlačidlo v chat inpute - AI prehľadá desiatky webových zdrojov a vytvorí výskumnú správu.</div>
+                <div class="card-body" style="font-size: 17px;">Tlačidlo v chat inpute - AI prehľadá desiatky webových zdrojov a vytvorí výskumnú správu.</div>
             </div>
         </div>
 
-        <div style="margin-top: 20px; padding: 14px 20px; background: var(--bg-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; font-size: 14px;">
+        <div style="margin-top: 20px; padding: 14px 20px; background: var(--bg-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; font-size: 17px;">
             <strong style="color: var(--blue);">Ako sa prihlásiť:</strong> <code>gemini.google.com</code> - prihláste sa svojím Google účtom. Zadarmo, žiadna platba.
         </div>
     </div>
@@ -1860,15 +1908,15 @@ Krátky prechod, žiadny dlhý monológ. Hneď ďalej na slide 16.
         <div class="two-col" style="margin-top: 28px;">
             <div>
                 <h3>Analógia</h3>
-                <p style="font-size: 18px; color: var(--text-primary); line-height: 1.55;">Predstavte si, že do školy príde nový asistent. Prvý deň mu poviete všetko - kto ste, koho učíte, aké máte pravidlá, akých máte žiakov. Druhý deň si to už pamätá.</p>
-                <p style="font-size: 18px; color: var(--text-primary); line-height: 1.55; margin-top: 14px;">Master prompt je presne to <strong>„rozprávanie sa s asistentom prvý deň"</strong> - len pre AI. Raz to napíšete, AI si to pamätá pri každom ďalšom použití.</p>
+                <p style="font-size: 22px; color: var(--text-primary); line-height: 1.55;">Predstavte si, že do školy príde nový asistent. Prvý deň mu poviete všetko - kto ste, koho učíte, aké máte pravidlá, akých máte žiakov. Druhý deň si to už pamätá.</p>
+                <p style="font-size: 22px; color: var(--text-primary); line-height: 1.55; margin-top: 14px;">Master prompt je presne to <strong>„rozprávanie sa s asistentom prvý deň"</strong> - len pre AI. Raz to napíšete, AI si to pamätá pri každom ďalšom použití.</p>
                 <div style="margin-top: 20px; padding: 16px 20px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0;">
                     <strong>Výstup zo sekcie 1:</strong> 80-120 riadkový dokument o vás, uložený v Google Drive.
                 </div>
             </div>
             <div>
                 <h3>9 oblastí, ktoré pokryjeme</h3>
-                <ol style="font-size: 17px; line-height: 1.7; color: var(--text-primary); padding-left: 22px;">
+                <ol style="font-size: 20px; line-height: 1.7; color: var(--text-primary); padding-left: 22px;">
                     <li>Kto ste (predmet, ročník, prax)</li>
                     <li>Vaša škola</li>
                     <li>Vaša trieda / cieľová skupina</li>
@@ -1902,7 +1950,7 @@ Akcent na sekciu „Čo NEROBÍTE":
         <div class="kicker">Sekcia 1 · live demo</div>
         <h1>Konverzačná tvorba master promptu.</h1>
         <p style="color: var(--text-secondary);">Princíp „nechajte AI nech sa pýta" - nemusíte písať dokument, len odpovedáte na otázky.</p>
-        <div style="margin-top: 28px; padding: 24px; background: var(--bg-light); border-radius: var(--card-radius); font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 14px; line-height: 1.6; color: var(--text-primary); max-height: 380px; overflow-y: auto;">
+        <div style="margin-top: 28px; padding: 24px; background: var(--bg-light); border-radius: var(--card-radius); font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 17px; line-height: 1.6; color: var(--text-primary); max-height: 380px; overflow-y: auto;">
 <strong>Prompt (v chate je tiež):</strong><br><br>
 Si prompt engineer. Tvoja úloha: vytvoriť pre mňa „master prompt" o mojom učiteľskom profile cez rozhovor.<br><br>
 <strong>PRAVIDLÁ ROZHOVORU:</strong><br>
@@ -1994,32 +2042,32 @@ Pri rotácii pozeraj:
     <div class="slide-inner wide">
         <div class="kicker">Sekcia 1 · uloženie</div>
         <h1>Uložte master prompt do Google Drive.</h1>
-        <p style="color: var(--text-secondary); font-size: 14px;">4 kroky priamo z Gemini chatu - bez kopírovania a vkladania.</p>
+        <p style="color: var(--text-secondary); font-size: 17px;">4 kroky priamo z Gemini chatu - bez kopírovania a vkladania.</p>
 
         <div class="cards-grid cols-2" style="margin-top: 24px;">
             <div class="card">
                 <div class="card-kicker">Krok 1</div>
                 <div class="card-title">3 bodky na konci chatu</div>
-                <div class="card-body" style="font-size: 14px;">Po vygenerovaní finálneho master promptu kliknite na <strong>3 bodky (⋮)</strong> v menu pri AI odpovedi.</div>
+                <div class="card-body" style="font-size: 17px;">Po vygenerovaní finálneho master promptu kliknite na <strong>3 bodky (⋮)</strong> v menu pri AI odpovedi.</div>
             </div>
             <div class="card">
                 <div class="card-kicker">Krok 2</div>
                 <div class="card-title">Export do Google Docs</div>
-                <div class="card-body" style="font-size: 14px;">V menu vyberte <strong>„Export to Google Docs"</strong>. Gemini automaticky vytvorí Doc vo vašom Drive.</div>
+                <div class="card-body" style="font-size: 17px;">V menu vyberte <strong>„Export to Google Docs"</strong>. Gemini automaticky vytvorí Doc vo vašom Drive.</div>
             </div>
             <div class="card">
                 <div class="card-kicker">Krok 3</div>
                 <div class="card-title">Otvorte a premenujte</div>
-                <div class="card-body" style="font-size: 14px;">Kliknite na link, ktorý Gemini ponúka. Doc sa otvorí. Premenujte na <em>„Master prompt - [vaše meno]"</em>.</div>
+                <div class="card-body" style="font-size: 17px;">Kliknite na link, ktorý Gemini ponúka. Doc sa otvorí. Premenujte na <em>„Master prompt - [vaše meno]"</em>.</div>
             </div>
             <div class="card" style="border-left: 4px solid var(--orange);">
                 <div class="card-kicker">Krok 4</div>
                 <div class="card-title">Vyčistite obsah</div>
-                <div class="card-body" style="font-size: 14px;">V Doc-u <strong>nechajte len obsah od „ROLA" nižšie</strong>. Všetko nad ňou (úvodný text, „Tu je váš master prompt:" atď.) vymažte.</div>
+                <div class="card-body" style="font-size: 17px;">V Doc-u <strong>nechajte len obsah od „ROLA" nižšie</strong>. Všetko nad ňou (úvodný text, „Tu je váš master prompt:" atď.) vymažte.</div>
             </div>
         </div>
 
-        <div style="margin-top: 20px; padding: 14px 20px; background: var(--bg-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; font-size: 14px;">
+        <div style="margin-top: 20px; padding: 14px 20px; background: var(--bg-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; font-size: 17px;">
             <strong style="color: var(--blue);">Prečo do Drive:</strong> Gem (sekcia 3) a NotebookLM (sekcia 2) sa naň priamo napoja. Dostupné z mobilu, doma aj v škole. Verzionovanie automatické.
         </div>
     </div>
@@ -2060,16 +2108,16 @@ Pointa o vyčistení:
             <div class="card">
                 <div class="card-kicker">Fáza 1 · zdieľanie</div>
                 <div class="card-title">1 - 2 dobrovoľníci</div>
-                <div class="card-body" style="font-size: 14px;">Kto má hotový master prompt a chce ho prečítať? Hlásiť do chatu alebo zdvihnutou rukou. Snažte sa o rôzny kontext (predmety, ročníky, stupne).</div>
+                <div class="card-body" style="font-size: 17px;">Kto má hotový master prompt a chce ho prečítať? Hlásiť do chatu alebo zdvihnutou rukou. Snažte sa o rôzny kontext (predmety, ročníky, stupne).</div>
             </div>
             <div class="card" style="border-left: 4px solid var(--orange);">
                 <div class="card-kicker">Fáza 2 · challenge AI</div>
                 <div class="card-title">Hoďte master prompt naspäť AI</div>
-                <div class="card-body" style="font-size: 14px;">Po prečítaní vlož master prompt do nového Gemini chatu so špeciálnym challenge promptom (nižšie). AI vám odpovie - ohodnotí, navrhne zlepšenia, upozorní na slepé miesta.</div>
+                <div class="card-body" style="font-size: 17px;">Po prečítaní vlož master prompt do nového Gemini chatu so špeciálnym challenge promptom (nižšie). AI vám odpovie - ohodnotí, navrhne zlepšenia, upozorní na slepé miesta.</div>
             </div>
         </div>
 
-        <div style="background: var(--bg-light); padding: 18px 22px; border-radius: 10px; margin-top: 20px; font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 13px; line-height: 1.6; color: var(--text-primary);">
+        <div style="background: var(--bg-light); padding: 18px 22px; border-radius: 10px; margin-top: 20px; font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 15px; line-height: 1.6; color: var(--text-primary);">
             <strong style="color: var(--orange);">Challenge prompt (skopírujte z chatu):</strong><br><br>
             „Nižšie ti dám môj master prompt - hlavný prompt o mne ako učiteľovi. Tvoja úloha:<br>
             (1) Ohodnoť ho od 1 do 10 - čo je silné, čo slabé.<br>
@@ -2167,53 +2215,53 @@ Pre učiteľov je NotebookLM zlato:
         <div class="cards-grid cols-2" style="margin-top: 24px; gap: 12px;">
             <div class="card" style="padding: 14px 18px;">
                 <div class="card-kicker">🎙️ Zvukový prehľad (Audio overview)</div>
-                <div class="card-title" style="font-size: 17px;">2 hostia diskutujú o vašich zdrojoch</div>
-                <div class="card-body" style="font-size: 13px;">Aj v slovenčine.</div>
+                <div class="card-title" style="font-size: 20px;">2 hostia diskutujú o vašich zdrojoch</div>
+                <div class="card-body" style="font-size: 15px;">Aj v slovenčine.</div>
             </div>
             <div class="card" style="padding: 14px 18px;">
                 <div class="card-kicker">🎬 Video prehľad (Video overview)</div>
-                <div class="card-title" style="font-size: 17px;">Krátke video so slajdmi</div>
-                <div class="card-body" style="font-size: 13px;">Vizuálny prehľad pre žiakov.</div>
+                <div class="card-title" style="font-size: 20px;">Krátke video so slajdmi</div>
+                <div class="card-body" style="font-size: 15px;">Vizuálny prehľad pre žiakov.</div>
             </div>
             <div class="card" style="padding: 14px 18px;">
                 <div class="card-kicker">🧠 Myšlienková mapa (mind map)</div>
-                <div class="card-title" style="font-size: 17px;">Vizuálna mapa pojmov</div>
-                <div class="card-body" style="font-size: 13px;">Štruktúra témy na jeden pohľad.</div>
+                <div class="card-title" style="font-size: 20px;">Vizuálna mapa pojmov</div>
+                <div class="card-body" style="font-size: 15px;">Štruktúra témy na jeden pohľad.</div>
             </div>
             <div class="card" style="padding: 14px 18px;">
                 <div class="card-kicker">📖 Učebný materiál (study guide)</div>
-                <div class="card-title" style="font-size: 17px;">Štruktúrovaný materiál na učenie</div>
-                <div class="card-body" style="font-size: 13px;">Pre žiakov pred testom.</div>
+                <div class="card-title" style="font-size: 20px;">Štruktúrovaný materiál na učenie</div>
+                <div class="card-body" style="font-size: 15px;">Pre žiakov pred testom.</div>
             </div>
             <div class="card" style="padding: 14px 18px;">
                 <div class="card-kicker">🃏 Kartičky na zapamätanie (flashcards)</div>
-                <div class="card-title" style="font-size: 17px;">Otázka na jednej strane, odpoveď na druhej</div>
-                <div class="card-body" style="font-size: 13px;">NotebookLM si pamätá, ktoré ste vedeli a ktoré nie.</div>
+                <div class="card-title" style="font-size: 20px;">Otázka na jednej strane, odpoveď na druhej</div>
+                <div class="card-body" style="font-size: 15px;">NotebookLM si pamätá, ktoré ste vedeli a ktoré nie.</div>
             </div>
             <div class="card" style="padding: 14px 18px;">
                 <div class="card-kicker">❓ Kvíz</div>
-                <div class="card-title" style="font-size: 17px;">Otázky s vyhodnotením</div>
-                <div class="card-body" style="font-size: 13px;">Opakuje tie, ktoré ste netrafili.</div>
+                <div class="card-title" style="font-size: 20px;">Otázky s vyhodnotením</div>
+                <div class="card-body" style="font-size: 15px;">Opakuje tie, ktoré ste netrafili.</div>
             </div>
             <div class="card" style="padding: 14px 18px;">
                 <div class="card-kicker">📊 Infografika</div>
-                <div class="card-title" style="font-size: 17px;">Vizuálny prehľad</div>
-                <div class="card-body" style="font-size: 13px;">10 štýlov na výber.</div>
+                <div class="card-title" style="font-size: 20px;">Vizuálny prehľad</div>
+                <div class="card-body" style="font-size: 15px;">10 štýlov na výber.</div>
             </div>
             <div class="card" style="padding: 14px 18px;">
                 <div class="card-kicker">📝 Súhrnný dokument (briefing)</div>
-                <div class="card-title" style="font-size: 17px;">Zhrnutie kľúčových bodov</div>
-                <div class="card-body" style="font-size: 13px;">Pre rýchle pripomenutie.</div>
+                <div class="card-title" style="font-size: 20px;">Zhrnutie kľúčových bodov</div>
+                <div class="card-body" style="font-size: 15px;">Pre rýchle pripomenutie.</div>
             </div>
             <div class="card" style="padding: 14px 18px;">
                 <div class="card-kicker">⏱️ Časová os (timeline)</div>
-                <div class="card-title" style="font-size: 17px;">Pre historické alebo vývojové témy</div>
-                <div class="card-body" style="font-size: 13px;">Chronologický prehľad.</div>
+                <div class="card-title" style="font-size: 20px;">Pre historické alebo vývojové témy</div>
+                <div class="card-body" style="font-size: 15px;">Chronologický prehľad.</div>
             </div>
             <div class="card" style="padding: 14px 18px;">
                 <div class="card-kicker">❔ Časté otázky (FAQ)</div>
-                <div class="card-title" style="font-size: 17px;">Najčastejšie otázky + odpovede zo zdrojov</div>
-                <div class="card-body" style="font-size: 13px;">Pre žiakov a rodičov.</div>
+                <div class="card-title" style="font-size: 20px;">Najčastejšie otázky + odpovede zo zdrojov</div>
+                <div class="card-body" style="font-size: 15px;">Pre žiakov a rodičov.</div>
             </div>
         </div>
     </div>
@@ -2291,7 +2339,7 @@ Bonus princíp - Configure Chat:
         <div class="kicker">Sekcia 2 · live demo</div>
         <h1>Fotosyntéza pre 3. ročník.</h1>
         <p style="color: var(--text-secondary);">Modelový notebook: 10 zdrojov (Inovovaný ŠVP, TVVP prírodovedy, vlastiveda, AITEC metodika).</p>
-        <div style="margin-top: 28px; padding: 24px; background: var(--bg-light); border-radius: var(--card-radius); font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 14px; line-height: 1.6; color: var(--text-primary);">
+        <div style="margin-top: 28px; padding: 24px; background: var(--bg-light); border-radius: var(--card-radius); font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 17px; line-height: 1.6; color: var(--text-primary);">
 <strong>Prompt v NotebookLM chat:</strong><br><br>
 Pre 3. ročník ZŠ pripravujem prezentáciu o fotosyntéze (téma v celku „Rastliny a huby" z TVVP prírodovedy). Vygeneruj návrh osnovy <strong>8 slidov</strong> v súlade s výkonovými štandardmi ŠVP.<br><br>
 Pre každý slide uveď:<br>
@@ -2326,15 +2374,15 @@ Ak je tam AITEC PDF - vygeneruje plný návrh. Backup: screenshot v Drive.
         <div class="two-col" style="margin-top: 28px;">
             <div>
                 <h3>Pri každom Studio výstupe je tlačidlo „Customize"</h3>
-                <p style="font-size: 17px; color: var(--text-primary); line-height: 1.55;">Bez customize: generický výstup pre univerzálne publikum.</p>
-                <p style="font-size: 17px; color: var(--text-primary); line-height: 1.55; margin-top: 10px;">S customize: presne pre vašu cieľovú skupinu.</p>
-                <div style="margin-top: 20px; padding: 16px 20px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 15px;">
+                <p style="font-size: 20px; color: var(--text-primary); line-height: 1.55;">Bez customize: generický výstup pre univerzálne publikum.</p>
+                <p style="font-size: 20px; color: var(--text-primary); line-height: 1.55; margin-top: 10px;">S customize: presne pre vašu cieľovú skupinu.</p>
+                <div style="margin-top: 20px; padding: 16px 20px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 18px;">
                     <strong>Príklad pre Zvukový prehľad (Audio Overview):</strong><br>„Cieľová skupina: deti 8 – 9 rokov, slovenský jazyk. Štýl: priateľský dialóg dvoch hostí, jednoduché slová, krátke vety, žiadne odborné termíny bez vysvetlenia. Dĺžka: krátky formát, cca 5 minút. Hlavné pojmy ktoré musia odznieť: fotosyntéza, chlorofyl, slnečné svetlo, rastlina, voda, kyslík."
                 </div>
             </div>
             <div>
                 <h3>5 vecí, ktoré customize ovplyvní</h3>
-                <ol style="font-size: 17px; line-height: 1.7; color: var(--text-primary); padding-left: 22px;">
+                <ol style="font-size: 20px; line-height: 1.7; color: var(--text-primary); padding-left: 22px;">
                     <li>Publikum (vek, predmet)</li>
                     <li>Jazyk (SK, CZ, EN)</li>
                     <li>Dĺžka (krátky / štandard / dlhý)</li>
@@ -2480,10 +2528,10 @@ Hlavná konfúzia:
         <div class="kicker">Sekcia 2 · autorské práva #3</div>
         <h1>Praktické tipy pre prompty.</h1>
         <p style="color: var(--text-secondary);">V prompte vždy zahrň ochrannú formuláciu.</p>
-        <div style="margin-top: 28px; padding: 20px 24px; background: var(--bg-light); border-radius: var(--card-radius); font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 15px; line-height: 1.6; color: var(--text-primary);">
+        <div style="margin-top: 28px; padding: 20px 24px; background: var(--bg-light); border-radius: var(--card-radius); font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 18px; line-height: 1.6; color: var(--text-primary);">
             No copyrighted characters (žiadne Disney, Pixar, Marvel, anime postavy). Original neutral character.
         </div>
-        <div style="margin-top: 16px; padding: 14px 18px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 14px;">
+        <div style="margin-top: 16px; padding: 14px 18px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 17px;">
             <strong>Prečo prompt v angličtine?</strong> Modely generovania obrázkov (Imagen, Nano Banana, DALL-E) sú trénované hlavne na anglických popisoch obrázkov. Anglický prompt = presnejší výstup. Slovenský prompt funguje, ale často s menej detailmi.
         </div>
         <div class="cards-grid cols-2" style="margin-top: 28px;">
@@ -2647,18 +2695,18 @@ Otvorenie:
         <div class="two-col" style="margin-top: 28px;">
             <div>
                 <h3>Gem = Gemini, ktorý vie tri veci navyše</h3>
-                <ol style="font-size: 18px; line-height: 1.7; color: var(--text-primary); padding-left: 24px;">
+                <ol style="font-size: 22px; line-height: 1.7; color: var(--text-primary); padding-left: 24px;">
                     <li>Má <strong>systémové inštrukcie</strong> (váš master prompt)</li>
                     <li>Má <strong>vlastné zdroje</strong> (Drive súbory, NotebookLM)</li>
                     <li>Pamätá si rolu medzi konverzáciami</li>
                 </ol>
-                <div style="margin-top: 20px; padding: 14px 18px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 15px;">
+                <div style="margin-top: 20px; padding: 14px 18px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 18px;">
                     <strong>Analógia:</strong> Gemini = nový asistent každý deň. Gem = stály asistent, ktorý si pamätá.
                 </div>
             </div>
             <div>
                 <h3>Cieľ sekcie 3</h3>
-                <p style="font-size: 17px; color: var(--text-primary); line-height: 1.55;">Vytvoriť Gem asistenta, ktorý:</p>
+                <p style="font-size: 20px; color: var(--text-primary); line-height: 1.55;">Vytvoriť Gem asistenta, ktorý:</p>
                 <ul class="bullets">
                     <li>Pozná vás (master prompt).</li>
                     <li>Má prístup k vašim zdrojom.</li>
@@ -2739,7 +2787,7 @@ Overené máj 2026 - hodnoty (cena, limity zdrojov) sa môžu zmeniť:
         <div class="kicker">Sekcia 3 · live demo (1/3)</div>
         <h1>Vygenerujte Gem inštrukcie + vytvorte Gem.</h1>
         <p style="color: var(--text-secondary);">Najprv si v čistom Gemini chate necháte vygenerovať Gem inštrukcie pre konkrétnu opakovanú úlohu. Potom ich vložíte do Gemu.</p>
-        <div style="margin-top: 20px; padding: 18px 22px; background: var(--bg-light); border-radius: var(--card-radius); font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 13px; line-height: 1.6; color: var(--text-primary);">
+        <div style="margin-top: 20px; padding: 18px 22px; background: var(--bg-light); border-radius: var(--card-radius); font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 15px; line-height: 1.6; color: var(--text-primary);">
 <strong>Prompt do čistého Gemini chatu:</strong><br><br>
 Pomôž mi vytvoriť Gem pre moju opakovanú úlohu: <strong>[vložte opakovanú úlohu, napr. „tvorba pracovných listov pre 3. ročník prírodovedy"]</strong>.<br><br>
 Položte mi otázky o:<br>
@@ -2789,7 +2837,7 @@ Sekvencia:
         <div class="two-col" style="margin-top: 28px;">
             <div>
                 <h3>Postup</h3>
-                <ol style="font-size: 17px; line-height: 1.7; color: var(--text-primary); padding-left: 22px;">
+                <ol style="font-size: 20px; line-height: 1.7; color: var(--text-primary); padding-left: 22px;">
                     <li>V Geme kliknite <strong>Knowledge</strong> (panel vpravo).</li>
                     <li>Kliknite <strong>„+ Add files"</strong>.</li>
                     <li>Vyberte zo svojho Drive: ŠVP úryvok pre váš predmet, učebnicu / TVVP, master prompt (môžete ako referenciu).</li>
@@ -2802,7 +2850,7 @@ Sekvencia:
                     <li><strong>Master prompt</strong> = kto ste (instructions).</li>
                     <li><strong>Knowledge</strong> = čo máte k dispozícii (zdroje).</li>
                 </ul>
-                <div style="margin-top: 18px; padding: 14px 18px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 15px;">
+                <div style="margin-top: 18px; padding: 14px 18px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 18px;">
                     Gem teraz odpovedá z perspektívy <strong>vás</strong> a používa <strong>vaše zdroje</strong>.
                 </div>
             </div>
@@ -2826,29 +2874,29 @@ Pointa: kľúčový rozdiel medzi Instructions a Knowledge - každé robí inú 
     <div class="slide-inner wide">
         <div class="kicker">Sekcia 3 · live demo (3/3) · payoff</div>
         <h1>Prvý reálny test: rozdiel pred / po.</h1>
-        <p style="color: var(--text-secondary); font-size: 14px;">Pamätáte si prompt z úvodu? Teraz ho hodíme do nášho Gemu s master promptom + Knowledge a porovnáme.</p>
+        <p style="color: var(--text-secondary); font-size: 17px;">Pamätáte si prompt z úvodu? Teraz ho hodíme do nášho Gemu s master promptom + Knowledge a porovnáme.</p>
 
         <div class="cards-grid cols-2" style="margin-top: 24px;">
             <div class="card" style="border-left: 4px solid var(--orange);">
                 <div class="card-kicker">⏪ Pred (z úvodu)</div>
                 <div class="card-title">Generický Gemini chat</div>
-                <div class="card-body" style="font-size: 13px;">Fiktívne mená žiakov, ŠVVP úpravy z hlavy, žiadne výkonové štandardy zo ŠVP, čas často nesedí. AI hádame.</div>
+                <div class="card-body" style="font-size: 15px;">Fiktívne mená žiakov, ŠVVP úpravy z hlavy, žiadne výkonové štandardy zo ŠVP, čas často nesedí. AI hádame.</div>
             </div>
             <div class="card" style="border-left: 4px solid var(--green);">
                 <div class="card-kicker">⏩ Po (teraz)</div>
                 <div class="card-title">Gem + master prompt + Knowledge</div>
-                <div class="card-body" style="font-size: 13px;">Vaši skutoční žiaci so ŠVVP, výkonové štandardy citované z nahratého TVVP, časový rozpis presne 45 min. AI vie z čoho čerpá.</div>
+                <div class="card-body" style="font-size: 15px;">Vaši skutoční žiaci so ŠVVP, výkonové štandardy citované z nahratého TVVP, časový rozpis presne 45 min. AI vie z čoho čerpá.</div>
             </div>
         </div>
 
-        <div style="margin-top: 20px; padding: 18px 22px; background: var(--bg-light); border-radius: 10px; font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 13px; line-height: 1.6; color: var(--text-primary);">
+        <div style="margin-top: 20px; padding: 18px 22px; background: var(--bg-light); border-radius: 10px; font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 15px; line-height: 1.6; color: var(--text-primary);">
             <strong style="color: var(--blue);">Demo prompt (lektor) - rovnaký ako v úvode:</strong><br>
             „Priprav mi 45-min hodinu prírodovedy na tému fotosyntéza pre 3. ročník. Zohľadni žiakov so ŠVVP z môjho profilu - pre každého navrhni konkrétnu úpravu. Použi výkonové štandardy z TVVP, ktoré som ti nahral/a, a explicitne uveď, z ktorého dokumentu čerpáš. Štruktúra: cieľ, motivácia, výklad, aktivita, zhrnutie. Časový rozpis tak, aby súčet bol presne 45 minút."<br><br>
             <strong style="color: var(--green);">Šablóna pre účastníkov (cvičenie):</strong><br>
             „Priprav mi 45-min hodinu [predmet] na tému [téma] pre [ročník]. Zohľadni žiakov so ŠVVP z môjho profilu - pre každého navrhni konkrétnu úpravu. Použi výkonové štandardy z dokumentov, ktoré som ti nahral/a, a explicitne uveď, z ktorého dokumentu čerpáš. Štruktúra: cieľ, motivácia, výklad, aktivita, zhrnutie. Časový rozpis tak, aby súčet bol presne 45 minút. Ak v zdrojoch chýba potrebná informácia, napíš „v zdrojoch neuvedené"."
         </div>
 
-        <div style="margin-top: 16px; padding: 12px 18px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 14px;">
+        <div style="margin-top: 16px; padding: 12px 18px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 17px;">
             <strong>Čo overujeme:</strong> Gem vie o žiakoch so ŠVVP z master promptu. Gem cituje z TVVP. Výstup je konkrétny, nie generický.
         </div>
     </div>
@@ -2924,7 +2972,7 @@ Najčastejšie problémy:
     <div class="slide-inner">
         <div class="kicker">Sekcia 3 · zdieľanie</div>
         <h1>Zdieľajte svoj Gem.</h1>
-        <p style="margin-top: 40px; font-size: 22px; color: var(--text-primary); line-height: 1.5;">Kto sa hlási? 1 - 2 dobrovoľníci ukážu svoj Gem naživo.</p>
+        <p style="margin-top: 40px; font-size: 26px; color: var(--text-primary); line-height: 1.5;">Kto sa hlási? 1 - 2 dobrovoľníci ukážu svoj Gem naživo.</p>
     </div>
     <aside class="notes">
 SHARE GEM - 10 minút (17:36-17:46)
@@ -2974,7 +3022,7 @@ Komentár ku každej ukážke (30 sek): čo bolo silné, čo by sa dalo doplniť
             </div>
         </div>
         <div style="margin-top: 32px; padding: 24px; background: var(--orange-light); border-radius: var(--card-radius); border: 1px solid var(--orange); text-align: center;">
-            <p style="margin: 0; font-size: 22px; font-weight: 600;">Máte to. Funkčný AI systém pre vašu prax.</p>
+            <p style="margin: 0; font-size: 26px; font-weight: 600;">Máte to. Funkčný AI systém pre vašu prax.</p>
         </div>
     </div>
     <aside class="notes">
@@ -3039,10 +3087,10 @@ Akcent:
     <div class="slide-inner wide">
         <div class="kicker">Záver · zadanie 10.6.</div>
         <h1>Záverečná prezentácia - 10.6.2026, 20:00.</h1>
-        <p style="color: var(--text-secondary); font-size: 14px;">Online ZOOM. Záverečnú prezentáciu nahrajte do svojho užívateľského konta v Inšpirácia.live.</p>
+        <p style="color: var(--text-secondary); font-size: 17px;">Online ZOOM. Záverečnú prezentáciu nahrajte do svojho užívateľského konta v Inšpirácia.live.</p>
 
         <div class="task-box" style="margin-top: 24px;">
-            <p style="font-weight: 700; color: var(--blue); font-size: 16px; margin: 0 0 12px 0;">Obsah prezentácie:</p>
+            <p style="font-weight: 700; color: var(--blue); font-size: 19px; margin: 0 0 12px 0;">Obsah prezentácie:</p>
             <ul class="bullets" style="margin: 0;">
                 <li><strong>Stručný popis problému</strong> - predmet, ročník, prečo je to opakovaný problém.</li>
                 <li><strong>Ukážka AI systému</strong> - master prompt + Gem + napojenie na NotebookLM / Drive.</li>
@@ -3053,7 +3101,7 @@ Akcent:
             </ul>
         </div>
 
-        <div style="margin-top: 20px; padding: 14px 20px; background: var(--bg-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 14px;">
+        <div style="margin-top: 20px; padding: 14px 20px; background: var(--bg-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 17px;">
             <strong style="color: var(--orange);">Alternatíva ak sa nemôžete zúčastniť naživo:</strong> odovzdanie materiálov vo formáte DOCX a PPTX vopred. V prípade neúčasti napíšte mail na <strong>inovacne@inspiracia.live</strong> s ospravedlnením (uveďte názov vzdelávania a dátum záverečnej prezentácie).
         </div>
     </div>
@@ -3150,8 +3198,8 @@ Po skončení:
     <button class="nav-btn" id="prev-btn" onclick="prevSlide()" title="Predošlý (←)">‹</button>
     <div class="slide-counter" id="slide-counter">1 / 51</div>
     <button class="nav-btn" id="next-btn" onclick="nextSlide()" title="Ďalší (→)">›</button>
-    <button class="nav-btn" onclick="openNotesWindow()" title="Speaker notes popup (N)" style="font-size: 13px; font-weight: 500;">📝</button>
-    <button class="nav-btn" onclick="openSyncedNotesWindow()" title="Speaker notes v druhom okne pre dual-monitor (S)" style="font-size: 13px; font-weight: 500;">🖥️</button>
+    <button class="nav-btn" onclick="openNotesWindow()" title="Speaker notes popup (N)" style="font-size: 15px; font-weight: 500;">📝</button>
+    <button class="nav-btn" onclick="openSyncedNotesWindow()" title="Speaker notes v druhom okne pre dual-monitor (S)" style="font-size: 15px; font-weight: 500;">🖥️</button>
 </div>
 
 <div class="keyboard-hint" id="kb-hint">← → nav · F fullscreen · N notes popup · S notes v druhom okne (dual monitor) · číslo+Enter = skok</div>
@@ -3227,7 +3275,7 @@ Po skončení:
     let jumpTimeout = null;
     const jumpOverlay = document.createElement('div');
     jumpOverlay.id = 'jump-overlay';
-    jumpOverlay.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.85);color:white;padding:24px 48px;border-radius:16px;font-size:48px;font-weight:500;font-family:"Roboto Mono",monospace;z-index:200;display:none;box-shadow:0 8px 32px rgba(0,0,0,0.4);border:2px solid #F77A10;';
+    jumpOverlay.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.85);color:white;padding:24px 48px;border-radius:16px;font-size: 48px;font-weight:500;font-family:"Roboto Mono",monospace;z-index:200;display:none;box-shadow:0 8px 32px rgba(0,0,0,0.4);border:2px solid #F77A10;';
     document.body.appendChild(jumpOverlay);
 
     function showJumpOverlay() {
@@ -3313,12 +3361,12 @@ Po skončení:
         .header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid #333; margin-bottom: 24px; }
         .slide-num { font-size: 48px; font-weight: 500; color: #F77A10; }
         .timer { font-size: 36px; font-weight: 500; font-family: 'Roboto Mono', monospace; color: #00C069; }
-        .timer-btn { background: transparent; border: 1px solid #666; color: white; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-left: 12px; }
+        .timer-btn { background: transparent; border: 1px solid #666; color: white; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 15px; margin-left: 12px; }
         .current-title { font-size: 26px; font-weight: 500; color: #F77A10; margin-bottom: 18px; }
-        .notes-content { background: #2a2a2a; padding: 24px; border-radius: 12px; margin-bottom: 20px; min-height: 220px; font-size: 18px; white-space: pre-wrap; }
-        .next { padding: 16px 20px; background: #2a2a2a; border-radius: 12px; opacity: 0.7; font-size: 14px; }
-        .next-label { color: #F77A10; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 6px; font-weight: 500; }
-        .hint { margin-top: 16px; font-size: 12px; opacity: 0.5; text-align: center; }
+        .notes-content { background: #2a2a2a; padding: 24px; border-radius: 12px; margin-bottom: 20px; min-height: 220px; font-size: 22px; white-space: pre-wrap; }
+        .next { padding: 16px 20px; background: #2a2a2a; border-radius: 12px; opacity: 0.7; font-size: 17px; }
+        .next-label { color: #F77A10; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 6px; font-weight: 500; }
+        .hint { margin-top: 16px; font-size: 14px; opacity: 0.5; text-align: center; }
     `;
 
     function clearNode(node) {
