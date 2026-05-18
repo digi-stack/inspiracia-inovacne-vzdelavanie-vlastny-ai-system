@@ -3264,11 +3264,13 @@ Po skončení:
     <button class="nav-btn" id="prev-btn" onclick="prevSlide()" title="Predošlý (←)">‹</button>
     <div class="slide-counter" id="slide-counter">1 / 51</div>
     <button class="nav-btn" id="next-btn" onclick="nextSlide()" title="Ďalší (→)">›</button>
+    <button class="nav-btn" onclick="cycleZoom()" title="Zväčšiť (+) / Zmenšiť (-) / Reset (0)" id="zoom-btn" style="font-size: 14px; font-weight: 500;">🔍 100%</button>
+    <button class="nav-btn" onclick="downloadPdf()" title="Stiahnuť PDF (P)" style="font-size: 15px; font-weight: 500;">📄</button>
     <button class="nav-btn" onclick="openNotesWindow()" title="Speaker notes popup (N)" style="font-size: 15px; font-weight: 500;">📝</button>
     <button class="nav-btn" onclick="openSyncedNotesWindow()" title="Speaker notes v druhom okne pre dual-monitor (S)" style="font-size: 15px; font-weight: 500;">🖥️</button>
 </div>
 
-<div class="keyboard-hint" id="kb-hint">← → nav · F fullscreen · N notes popup · S notes v druhom okne (dual monitor) · číslo+Enter = skok</div>
+<div class="keyboard-hint" id="kb-hint">← → nav · F fullscreen · +/− zoom · P PDF · N notes popup · S notes v druhom okne · číslo+Enter = skok</div>
 
 <script>
     const slides = document.querySelectorAll('.slide');
@@ -3406,6 +3408,18 @@ Po skončení:
             openNotesWindow();
         } else if (e.key === 's' || e.key === 'S') {
             openSyncedNotesWindow();
+        } else if (e.key === '+' || e.key === '=') {
+            e.preventDefault();
+            zoomIn();
+        } else if (e.key === '-' || e.key === '_') {
+            e.preventDefault();
+            zoomOut();
+        } else if (e.key === '0') {
+            e.preventDefault();
+            setZoom(100);
+        } else if (e.key === 'p' || e.key === 'P') {
+            e.preventDefault();
+            downloadPdf();
         }
     });
 
@@ -3414,6 +3428,78 @@ Po skončení:
             document.documentElement.requestFullscreen();
         } else {
             document.exitFullscreen();
+        }
+    }
+
+    /* ===== ZOOM ===== */
+    const ZOOM_LEVELS = [100, 115, 130, 150];
+    let currentZoomIdx = 0;
+
+    function applyZoom(percent) {
+        // Detekcia Firefox (nemá CSS zoom property)
+        const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+
+        if (isFirefox) {
+            // Firefox fallback - transform: scale na celom slide stacku
+            const slides = document.querySelectorAll('.slide');
+            const scale = percent / 100;
+            slides.forEach(el => {
+                el.style.transform = scale === 1 ? '' : `scale(${scale})`;
+                el.style.transformOrigin = 'top left';
+            });
+        } else {
+            // Chrome / Edge / Safari - native CSS zoom (najjednoduchšie a najspoľahlivejšie)
+            document.body.style.zoom = (percent / 100).toString();
+        }
+
+        // Aktualizuj tlačidlo
+        const btn = document.getElementById('zoom-btn');
+        if (btn) btn.textContent = `🔍 ${percent}%`;
+        // Ulož do localStorage
+        try { localStorage.setItem('inovacne_zoom', String(percent)); } catch(e) {}
+    }
+
+    function setZoom(percent) {
+        const idx = ZOOM_LEVELS.indexOf(percent);
+        if (idx >= 0) currentZoomIdx = idx;
+        applyZoom(percent);
+    }
+
+    function zoomIn() {
+        if (currentZoomIdx < ZOOM_LEVELS.length - 1) currentZoomIdx++;
+        applyZoom(ZOOM_LEVELS[currentZoomIdx]);
+    }
+
+    function zoomOut() {
+        if (currentZoomIdx > 0) currentZoomIdx--;
+        applyZoom(ZOOM_LEVELS[currentZoomIdx]);
+    }
+
+    function cycleZoom() {
+        currentZoomIdx = (currentZoomIdx + 1) % ZOOM_LEVELS.length;
+        applyZoom(ZOOM_LEVELS[currentZoomIdx]);
+    }
+
+    // Načítaj uložené zoom level pri štarte
+    try {
+        const saved = parseInt(localStorage.getItem('inovacne_zoom') || '100', 10);
+        if (ZOOM_LEVELS.includes(saved)) setZoom(saved);
+    } catch(e) {}
+
+    /* ===== PDF DOWNLOAD ===== */
+    function downloadPdf() {
+        // Reset zoom na 100% pred tlačou (transformované slidy by sa do PDF neprenášali správne)
+        const previousZoom = ZOOM_LEVELS[currentZoomIdx];
+        if (previousZoom !== 100) {
+            applyZoom(100);
+            // Krátka pauza aby sa DOM stihol prekresliť
+            setTimeout(() => {
+                window.print();
+                // Po tlači vráť pôvodný zoom
+                setTimeout(() => applyZoom(previousZoom), 500);
+            }, 100);
+        } else {
+            window.print();
         }
     }
 
