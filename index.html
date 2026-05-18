@@ -1045,6 +1045,72 @@
                 print-color-adjust: exact !important;
                 color-adjust: exact !important;
             }
+
+            /* ===== Per-slide fixy pre PDF (slidy ktoré pretekajú) ===== */
+
+            /* Slide 13 - Anatómia promptu: 4 karty z 1 stĺpca na 2×2 grid */
+            .slide[data-slide="13"] .cards-grid.cols-1 {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 14px !important;
+            }
+            .slide[data-slide="13"] .card {
+                padding: 14px 18px !important;
+            }
+            .slide[data-slide="13"] .card-title {
+                font-size: 20px !important;
+            }
+            .slide[data-slide="13"] .card-body {
+                font-size: 17px !important;
+            }
+
+            /* Slide 27 - 10 typov výstupov: 2 stĺpce na 3 stĺpce + tesnejšie */
+            .slide[data-slide="27"] .cards-grid.cols-2 {
+                grid-template-columns: 1fr 1fr 1fr !important;
+                gap: 10px !important;
+            }
+            .slide[data-slide="27"] .card {
+                padding: 10px 14px !important;
+            }
+            .slide[data-slide="27"] .card-kicker {
+                font-size: 13px !important;
+            }
+            .slide[data-slide="27"] .card-title {
+                font-size: 16px !important;
+                margin-top: 4px !important;
+            }
+            .slide[data-slide="27"] .card-body {
+                font-size: 13px !important;
+            }
+
+            /* Slide 43 - Payoff porovnanie: zmenšiť prompt box + spacing */
+            .slide[data-slide="43"] h1 {
+                font-size: 48px !important;
+                margin-bottom: 8px !important;
+            }
+            .slide[data-slide="43"] .cards-grid {
+                margin-top: 14px !important;
+                gap: 14px !important;
+            }
+            .slide[data-slide="43"] .card {
+                padding: 12px 16px !important;
+            }
+            .slide[data-slide="43"] .card-body {
+                font-size: 14px !important;
+            }
+            /* Prompt box (SF Mono) zmenšenie */
+            .slide[data-slide="43"] > .slide-inner > div[style*="font-family"] {
+                margin-top: 12px !important;
+                padding: 12px 16px !important;
+                font-size: 12px !important;
+                line-height: 1.45 !important;
+            }
+            /* Spodný "Čo overujeme" box */
+            .slide[data-slide="43"] > .slide-inner > div[style*="orange-light"] {
+                margin-top: 10px !important;
+                padding: 8px 14px !important;
+                font-size: 14px !important;
+            }
         }
     </style>
 </head>
