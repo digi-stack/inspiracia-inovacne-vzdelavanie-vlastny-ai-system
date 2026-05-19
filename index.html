@@ -3436,21 +3436,20 @@ Po skončení:
     let currentZoomIdx = 0;
 
     function applyZoom(percent) {
-        // Detekcia Firefox (nemá CSS zoom property)
-        const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
-
-        if (isFirefox) {
-            // Firefox fallback - transform: scale na celom slide stacku
-            const slides = document.querySelectorAll('.slide');
-            const scale = percent / 100;
-            slides.forEach(el => {
-                el.style.transform = scale === 1 ? '' : `scale(${scale})`;
-                el.style.transformOrigin = 'top left';
-            });
-        } else {
-            // Chrome / Edge / Safari - native CSS zoom (najjednoduchšie a najspoľahlivejšie)
-            document.body.style.zoom = (percent / 100).toString();
-        }
+        // Zoomujeme LEN obsah slidu (.slide-inner), nie celé body
+        // Dôvod: slidy majú position: absolute + width:100vw a body.zoom by ich poslal mimo viewportu
+        // Toto zachová slide centrovaný na obrazovke a zväčšuje len jeho obsah
+        const scale = percent / 100;
+        const slideInners = document.querySelectorAll('.slide-inner');
+        slideInners.forEach(el => {
+            if (scale === 1) {
+                el.style.transform = '';
+                el.style.transformOrigin = '';
+            } else {
+                el.style.transform = `scale(${scale})`;
+                el.style.transformOrigin = 'center center';
+            }
+        });
 
         // Aktualizuj tlačidlo
         const btn = document.getElementById('zoom-btn');
