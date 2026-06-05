@@ -2432,6 +2432,43 @@ Ak je tam AITEC PDF - vygeneruje plný návrh. Backup: screenshot v Drive.
     </aside>
 </div>
 
+<!-- SLIDE 29b: NotebookLM ukážka - interaktívny kvíz cez Gemini Canvas -->
+<div class="slide slide-content" data-slide="29b">
+    <div class="slide-inner">
+        <div class="kicker">Sekcia 2 · live demo</div>
+        <h1>NotebookLM - ukážka.</h1>
+        <p style="color: var(--text-secondary);">Z notebooku postavíme interaktívny kvíz pre žiakov - cez Gemini Canvas, bez kódu.</p>
+        <div style="margin-top: 28px; padding: 24px; background: var(--bg-light); border-radius: var(--card-radius); font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 17px; line-height: 1.6; color: var(--text-primary);">
+<strong>Prompt:</strong><br><br>
+Len z týchto zdrojov vytvor interaktívny kvíz pre žiakov 3. ročníka ZŠ o fotosyntéze. 10 otázok s výberom odpovede, jednoduchý jazyk ale v súlade so zdrojmi. <strong>Nič nedopĺňaj z vlastných znalostí.</strong> Po každej odpovedi krátke vysvetlenie - pri správnej pochvál, <strong>pri nesprávnej vysvetli, prečo je nesprávna a ktorá je správna.</strong> Na konci skóre a pochvala. K niektorým odpovediam prilož smajlíka alebo emotikonu.
+        </div>
+        <p style="margin-top: 24px; font-size: 18px; color: var(--text-secondary);">Výstup: <a href="https://gemini.google.com/app/915318201a82d727" style="color: var(--orange);">gemini.google.com/app/915318201a82d727</a></p>
+    </div>
+    <aside class="notes">
+LIVE DEMO - INTERAKTÍVNY KVÍZ cez Gemini Canvas
+
+Nový postup (NotebookLM teraz žije aj v Gemini, notebooky synchronizované):
+1. V NotebookLM maj notebook so zdrojmi (učebnica, ŠVP úryvok).
+2. Choď do Gemini -> Notebook -> importuj notebook.
+3. Vyber Canvas (vizuálne výstupy - kvízy, hry) alebo Dynamic View (živé interaktívne nástroje).
+4. Vlož prompt -> Gemini postaví appku za pár minút, bez kódu.
+
+Dva kľúčové prvky v prompte (povedz prečo):
+- „Nič nedopĺňaj z vlastných znalostí" -> menej halucinácií, obsah uzemnený v zdrojoch
+- „pri nesprávnej vysvetli prečo" -> lepší učebný efekt pre žiaka
+
+ŠABLÓNOVÝ PRINCÍP (aha moment pre učiteľov):
+Nenaučíte sa jeden kvíz, ale vzor. Vymeňte 3 premenné:
+- ročník/vek (3. ročník -> ľubovoľný)
+- téma (fotosyntéza -> vodný kolobeh, vybrané slová, násobilka)
+- typ výstupu (kvíz -> pexeso, slovníček, pracovný list, časová os)
+
+GDPR pointa: do notebooku NEDÁVAŤ osobné údaje žiakov (mená, hodnotenia, IVP, zdravotné info). Len učebná látka.
+
+Backup: screen recording / screenshot appky v Drive 04-demo-zaloha/. SK výstup otestuj vopred (kvalita kolíše).
+    </aside>
+</div>
+
 <!-- SLIDE 30: Customize button -->
 <div class="slide slide-content" data-slide="30">
     <div class="slide-inner wide">
