@@ -11,7 +11,7 @@
     <meta http-equiv="Referrer-Policy" content="no-referrer">
     <meta name="referrer" content="no-referrer">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=()">
-    <title>Inovačné vzdelávanie - AI v praxi | Inšpirácia | 18.5.2026</title>
+    <title>Inovačné vzdelávanie - AI v praxi | Inšpirácia | 15.6.2026</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 56 C 14 40 6 28 14 18 C 22 8 32 18 32 26 C 32 18 42 8 50 18 C 58 28 50 40 32 56 Z' fill='%23E63946'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -665,6 +665,70 @@
             margin-top: 24px;
         }
 
+        /* Decision flow diagram (slide 10) */
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 18px;
+            flex-wrap: nowrap;
+        }
+        .flow-col {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            justify-content: center;
+        }
+        .flow-box {
+            border: 2.5px solid var(--dark);
+            border-radius: 14px;
+            padding: 12px 14px;
+            background: var(--bg-white);
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 1.3;
+            text-align: center;
+            max-width: 165px;
+        }
+        .flow-box.start { background: var(--dark); color: #fff; }
+        .flow-box.result {
+            border-color: var(--orange);
+            background: var(--orange-light);
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        .flow-box.q .flow-qlabel {
+            display: block;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        .flow-branch {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            justify-content: center;
+        }
+        .flow-yn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .flow-chip {
+            border: 2px solid var(--dark);
+            border-radius: 6px;
+            padding: 2px 9px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Roboto Mono', monospace;
+        }
+        .flow-arrow { font-size: 18px; color: var(--dark); font-weight: 700; }
+
         /* Matrix 2x2 */
         .matrix-2x2 {
             display: grid;
@@ -1127,7 +1191,7 @@
     <div class="slide-inner">
         <h1>Inovačné vzdelávanie<br><span class="accent">AI v praxi</span></h1>
         <p class="tagline"><em>Tvorba vlastného AI systému</em><br>Vlastný problém. Vlastné riešenie.</p>
-        <div class="meta">Ing. Michal Marko &nbsp;·&nbsp; Inšpirácia &nbsp;·&nbsp; 18.5.2026</div>
+        <div class="meta">Ing. Michal Marko &nbsp;·&nbsp; Inšpirácia &nbsp;·&nbsp; 15.6.2026</div>
     </div>
     <aside class="notes">
 OTVORENIE - 30 sekúnd, energia
@@ -1165,7 +1229,7 @@ Pred štartom: Zoom záznam vypnutý, odkaz na materiály pripravený do chatu.
             </div>
         </div>
         <div style="margin-top: 32px; padding: 24px; background: var(--red-light); border-left: 4px solid var(--red); border-radius: 0 var(--card-radius) var(--card-radius) 0;">
-            <h3 style="margin: 0; font-size: 26px;">🙋 Kamera ON · mikrofón počas dema OFF · otázky do chatu kedykoľvek.</h3>
+            <h3 style="margin: 0; font-size: 26px;">🙋 Kamera ON · mikrofón počas mojej prezentácie OFF · otázky do chatu kedykoľvek.</h3>
         </div>
     </div>
     <aside class="notes">
@@ -1188,8 +1252,8 @@ Prechod → slide 3 (Pravidlá)
 <!-- SLIDE 3: Pravidlá nášho stretnutia -->
 <div class="slide slide-content" data-slide="3">
     <div class="slide-inner">
-        <div class="kicker">Pravidlá nášho stretnutia</div>
-        <h1>Pravidlá nášho stretnutia.</h1>
+        <div class="kicker">Ako budeme spolupracovať</div>
+        <h1>Pravidlá.</h1>
         <div class="cards-grid cols-2" style="margin-top: 32px;">
             <div class="card">
                 <div class="card-kicker">Kamera</div>
@@ -1198,7 +1262,7 @@ Prechod → slide 3 (Pravidlá)
             </div>
             <div class="card">
                 <div class="card-kicker">Mikrofón</div>
-                <div class="card-title">Vypnutý počas dema</div>
+                <div class="card-title">Vypnutý počas mojej prezentácie</div>
                 <div class="card-body">Zapnite si mikrofón, len keď sa pýtate alebo zdieľate.</div>
             </div>
             <div class="card">
@@ -1233,47 +1297,6 @@ PRAVIDLÁ - 2 minúty (13:01-13:03)
 - Tým zostane viditeľná počas celej relácie
 
 Tip: zakaždým, keď účastník zapne kameru, krátko poďakujte.
-    </aside>
-</div>
-
-<!-- SLIDE 4: Kto vás dnes vedie -->
-<div class="slide slide-content" data-slide="4">
-    <div class="slide-inner">
-        <div class="kicker">Úvod · lektor</div>
-        <h1>Kto vás dnes vedie.</h1>
-        <div class="cards-grid cols-2" style="margin-top: 32px;">
-            <div class="card">
-                <div class="card-kicker">Lektor</div>
-                <div class="card-title">Ing. Michal Marko</div>
-                <div class="card-body">Digi Compliance · zakladateľ a konzultant.</div>
-            </div>
-            <div class="card">
-                <div class="card-kicker">Skúsenosti</div>
-                <div class="card-title">10+ rokov projektového manažmentu</div>
-                <div class="card-body">Certifikát IPMA C, vedenie projektov v korporáte aj malých firmách.</div>
-            </div>
-            <div class="card">
-                <div class="card-kicker">Špecializácia</div>
-                <div class="card-title">Compliance konzultant</div>
-                <div class="card-body">GDPR, AI Act, ISO 27001, 9001, 14001.</div>
-            </div>
-            <div class="card">
-                <div class="card-kicker">Lektorská prax</div>
-                <div class="card-title">AI vzdelávania</div>
-                <div class="card-body">Cestovné agentúry, firmy aj školy. Pracujem denne so 4-5 LLM modelmi.</div>
-            </div>
-        </div>
-    </div>
-    <aside class="notes">
-LEKTOR - 2 minúty (13:03-13:05)
-
-Čo povedať:
-- Som projektový manažér IPMA C, špecializujem sa na compliance
-- Pravidelne robím AI vzdelávania pre firmy aj školy
-- Nie som z IT - pracujem s AI ako bežný profesionál, ktorý si chce ušetriť čas a robiť lepšie výstupy
-- Denne používam 4-5 modelov (Claude, Gemini, GPT, Perplexity) - viem porovnať
-
-Tón: úprimný, prakticky orientovaný, bez korporátneho žargónu.
     </aside>
 </div>
 
@@ -1318,7 +1341,7 @@ Prečo chat namiesto Zoom poll:
 <div class="slide slide-content" data-slide="6">
     <div class="slide-inner">
         <div class="kicker">Úvod · mapa dňa</div>
-        <h1>Cesta dnes - 3 sekcie, 1 systém.</h1>
+        <h1>Cesta dnes - 3 sekcie, 1 AI systém.</h1>
         <p style="color: var(--text-secondary);">Na konci dňa máte funkčný AI systém, ktorý vie o vás a vašich zdrojoch.</p>
         <div class="cards-grid cols-3" style="margin-top: 32px;">
             <div class="card">
@@ -1356,7 +1379,7 @@ Pointa: na konci dňa odídete nie s teóriou, ale s funkčným systémom.
 <div class="slide slide-content" data-slide="7">
     <div class="slide-inner">
         <div class="kicker">Úvod · ako pracujeme</div>
-        <h1>Ako budú prebiehať sekcie.</h1>
+        <h1>Ako budú prebiehať breakout rooms.</h1>
         <p style="color: var(--text-secondary);">3 sekcie, 3-krát rovnaký vzor. Demo - skúšate - ukazujete.</p>
         <div class="cards-grid cols-3" style="margin-top: 32px;">
             <div class="card">
@@ -1406,7 +1429,7 @@ Posledná kontrola lektora pred sekciou 1:
     <div class="slide-inner">
         <div class="kicker" style="text-align: center;">Filozofia dnešného vzdelávania</div>
         <p class="statement">Vlastný problém. <span class="accent">Vlastné riešenie.</span></p>
-        <p style="margin-top: 32px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; font-size: 26px; color: var(--text-secondary); line-height: 1.5;">Neukážeme vám všeobecné triky. Ukážeme vám, ako vyriešiť váš konkrétny opakovaný problém z vyučovania - taký, ktorý vám zaberá čas každý týždeň.</p>
+        <p style="margin-top: 32px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; font-size: 26px; color: var(--text-secondary); line-height: 1.5;">Neukážem vám všeobecné triky. Ukážem vám, ako vyriešiť váš konkrétny opakovaný problém z vyučovania - taký, ktorý vám zaberá čas každý týždeň.</p>
         <div style="margin-top: 32px; padding: 20px 24px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 var(--card-radius) var(--card-radius) 0; max-width: 800px; margin-left: auto; margin-right: auto;">
             <strong>Tip:</strong> Ak ste problém vyplnili vo formulári, super. Ak nie, teraz máte poslednú príležitosť - napíšte ho do chatu počas nasledujúcich minút.
         </div>
@@ -1474,54 +1497,85 @@ Tip: ak v praxi majú vágne odpovede, niekedy pomôže ten istý prompt v angli
 <!-- SLIDE 10: Čo AI vie a nevie -->
 <div class="slide slide-content" data-slide="10">
     <div class="slide-inner wide">
-        <div class="kicker">Úvod · framework</div>
-        <h1>Čo AI vie a kde sa mýli.</h1>
-        <p style="color: var(--text-secondary); font-size: 17px;">Rozhodovací rámec - štyri kvadranty. Pravý dolný je o zodpovednosti, ktorú AI nikdy neunesie za vás.</p>
-        <div class="matrix-2x2" style="margin-top: 20px;">
-            <div class="matrix-cell highlight">
-                <div class="cell-label">AI robí za vás</div>
-                <div class="cell-title" style="color: var(--green);">Mechanická produkcia</div>
-                <div class="cell-body">Brainstorming aktivít, preformulovanie textu pre 3. ročník, tvorba kvízov a pracovných listov, sumár dokumentu.</div>
+        <div class="kicker">Úvod · rozhodovací rámec</div>
+        <h1>Kedy úlohu robiť sám a kedy nechať AI.</h1>
+        <p style="color: var(--text-secondary); font-size: 17px;">Jednoduchý rozhodovací strom - tri otázky, ktoré si položíte pri každej novej úlohe.</p>
+
+        <div class="flow">
+            <div class="flow-col">
+                <div class="flow-box start">Nová úloha</div>
             </div>
-            <div class="matrix-cell">
-                <div class="cell-label">AI + učiteľ spolu</div>
-                <div class="cell-title" style="color: var(--blue);">Spolupráca</div>
-                <div class="cell-body">Príprava hodiny (osnova + vaša úprava), diferenciácia úloh pre ŠVVP, slovné hodnotenia (návrh + osobná úprava), plán roka (rámec + vaša expertíza).</div>
+            <div class="flow-arrow">→</div>
+
+            <div class="flow-col">
+                <div class="flow-box q"><span class="flow-qlabel">Otázka 1</span>Mám jasný výsledok v hlave?</div>
             </div>
-            <div class="matrix-cell">
-                <div class="cell-label">Zvážiť dvakrát</div>
-                <div class="cell-title" style="color: var(--text-secondary);">Pozor na dôsledky</div>
-                <div class="cell-body">Hodnotenie konkrétnych žiakov, citlivé komunikácie rodičom, fakty, ktoré neviete overiť.</div>
+            <div class="flow-arrow">→</div>
+
+            <div class="flow-col">
+                <div class="flow-yn"><span class="flow-chip">ÁNO</span><span class="flow-arrow">→</span></div>
+                <div class="flow-yn"><span class="flow-chip">NIE</span><span class="flow-arrow">→</span>
+                    <div class="flow-box result">Začnite sami,<br>aby ste získali<br>jasno</div>
+                </div>
             </div>
-            <div class="matrix-cell">
-                <div class="cell-label">Musí spraviť človek</div>
-                <div class="cell-title" style="color: var(--orange);">Vaša zodpovednosť</div>
-                <div class="cell-body">Posúdenie konkrétneho dieťaťa, disciplinárne rozhodnutia, známky do triedneho zoznamu, veci, kde nesie zodpovednosť zákon.</div>
+
+            <div class="flow-col">
+                <div class="flow-box q"><span class="flow-qlabel">Otázka 2</span>Zvládnem to ručne do 5 minút?</div>
+            </div>
+            <div class="flow-arrow">→</div>
+
+            <div class="flow-col">
+                <div class="flow-yn"><span class="flow-chip">ÁNO</span><span class="flow-arrow">→</span>
+                    <div class="flow-box result">Urobte sami<br>(AI sa neoplatí)</div>
+                </div>
+                <div class="flow-yn"><span class="flow-chip">NIE</span><span class="flow-arrow">→</span></div>
+            </div>
+
+            <div class="flow-col">
+                <div class="flow-box q"><span class="flow-qlabel">Otázka 3</span>Potrebujem sa proces naučiť či pochopiť?</div>
+            </div>
+            <div class="flow-arrow">→</div>
+
+            <div class="flow-col">
+                <div class="flow-yn"><span class="flow-chip">ÁNO</span><span class="flow-arrow">→</span>
+                    <div class="flow-box result">Sami alebo<br>s pomocou AI</div>
+                </div>
+                <div class="flow-yn"><span class="flow-chip">NIE</span><span class="flow-arrow">→</span>
+                    <div class="flow-box result">Nechajte<br>vygenerovať AI</div>
+                </div>
             </div>
         </div>
-        <div style="margin-top: 24px; padding: 16px 22px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0;">
-            <strong style="color: var(--orange);">Pointa:</strong> AI vám môže navrhnúť slovné hodnotenie, ale konečnú formuláciu pre konkrétneho žiaka vždy schvaľujete vy.
+
+        <div style="margin-top: 16px; padding: 12px 22px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 16px;">
+            <strong style="color: var(--orange);">Pointa:</strong> AI nie je riešenie na všetko. Niekedy je rýchlejšie urobiť úlohu sám - a niekedy sa potrebujete proces naučiť. Vždy ale rozhodujete vy, AI nepozná váš kontext ani vašich žiakov.
         </div>
     </div>
     <aside class="notes">
-4 KVADRANTY - 5 minút (13:18-13:23)
+ROZHODOVACÍ RÁMEC - KEDY SÁM, KEDY AI - 5 minút (13:18-13:23)
 
-Najdôležitejší slide z teórie. AI nie je všemocná, ani zbytočná.
+Najdôležitejší slide z teórie. AI nie je všemocná, ani zbytočná - kľúč je vedieť, kedy ju (ne)použiť.
 
-Postup:
-- Prejdite každý kvadrant 30-45 sekúnd
-- Dajte 1 konkrétny príklad zo školského života ku každému
+TRI OTÁZKY (prejdi postupne, sleduj šípky):
+1. Mám jasný výsledok v hlave?
+   - NIE → začnite sami, aby ste si ujasnili, čo vlastne chcete. Bez jasného cieľa AI len háda.
+   - ÁNO → pokračuj otázkou 2.
+2. Zvládnem to ručne do 5 minút?
+   - ÁNO → urobte sami. Rozbehnúť AI, napísať prompt a skontrolovať výstup trvá dlhšie ako tá úloha.
+   - NIE → pokračuj otázkou 3.
+3. Potrebujem sa ten proces naučiť alebo pochopiť?
+   - ÁNO → urobte sami alebo s AI ako pomocníkom (AI vás vedie, nerobí to za vás).
+   - NIE → nechajte vygenerovať AI, vy len skontrolujete.
 
-Akcent na pravý dolný kvadrant:
-- AI vám môže navrhnúť slovné hodnotenie
-- Konečnú formuláciu pre konkrétneho žiaka vždy schvaľujete vy
-- Toto je o zodpovednosti, ktorú za vás AI neunesie
+Príklad pre učiteľa:
+- "Naformátovať jednu tabuľku" → otázka 2 ÁNO → urobím sám.
+- "Pripraviť 4 varianty písomky" → dlhšie ako 5 min, nepotrebujem sa to učiť → AI vygeneruje.
+- "Pochopiť nový tematický celok v ŠVP" → potrebujem pochopiť → sám alebo s AI ako mentorom.
 
-Záverečná veta:
-"Dnes pracujeme hlavne v zelenom a modrom kvadrante - tam je úspora času najväčšia."
+Pointa (lišta dole):
+- AI nie je riešenie na všetko. Rozhodujete vždy vy - AI nepozná váš kontext ani žiakov.
 
 Bridge na nasledujúci slide (3-krokový protokol):
-„Vedieť, KDE AI použiť, je polovica. Druhá polovica je vedieť, AKO ju používať tak, aby vám neoutsourcovala mozog. Pozrime sa na konkrétny protokol, ako AI správne spochybňovať."
+„Vedieť, KEDY AI použiť, je polovica. Druhá polovica je vedieť, AKO ju používať tak, aby vám neoutsourcovala mozog. Pozrime sa na konkrétny protokol, ako AI správne spochybňovať."
     </aside>
 </div>
 
@@ -1710,7 +1764,7 @@ Akcent:
 <div class="slide slide-content" data-slide="14">
     <div class="slide-inner wide">
         <div class="kicker">Úvod · ako overiť AI výstup</div>
-        <h1>5 kontrolných otázok pre každý AI výstup.</h1>
+        <h1>5 kontrolných otázok pre AI výstup.</h1>
         <p style="color: var(--text-secondary); font-size: 17px;">Vedieť napísať dobrý prompt je len polovica. Druhá polovica je vedieť AI výstup spätne skontrolovať.</p>
 
         <div class="cards-grid cols-2" style="margin-top: 20px;">
@@ -1762,7 +1816,7 @@ Bridge na ďalší slide (Demo tri prompty):
 
 POUŽITIE V SEKCII 3:
 - Túto pointu rozvinieme v cvičení Gem (slide pos 47) - účastníci aplikujú prompt „AI ako kritik" na svoj vlastný výstup.
-- Z výstupu kritiky → odpoveď do reflexie pre záverečnú prezentáciu 10.6.
+- Z výstupu kritiky → odpoveď do reflexie pre záverečnú prezentáciu 29.6.
     </aside>
 </div>
 
@@ -1790,7 +1844,7 @@ POUŽITIE V SEKCII 3:
             </div>
         </div>
         <div style="margin-top: 24px; padding: 16px 22px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0;">
-            <strong style="color: var(--orange);">Pointa:</strong> 80 slov navyše = úplne iný výstup. Master prompt ich napíšete raz, používate ich stokrát.
+            <strong style="color: var(--orange);">Pointa:</strong> 80 slov navyše = úplne iný výstup. Master prompt napíšete raz. A môžete ho používať 100-krát.
         </div>
     </div>
     <aside class="notes">
@@ -2070,7 +2124,7 @@ Pred demom: pinnuť prompt v chate ZNOVA, screenshot finálneho master promptu v
         <div class="task-box">
             <ul class="bullets check" style="margin: 0;">
                 <li>Otvorte <strong>gemini.google.com</strong>.</li>
-                <li>Skopírujte prompt z chatu (alebo zo slidu 16).</li>
+                <li>Skopírujte prompt z chatu (alebo z predošlého slidu).</li>
                 <li>Vložte ho a stlačte Enter.</li>
                 <li>Odpovedajte postupne na otázky - neponáhľajte sa, dajte detail.</li>
                 <li>Keď Gemini vygeneruje finálny master prompt - skopírujte ho.</li>
@@ -2100,66 +2154,6 @@ Pri rotácii pozeraj:
 - Krátke odpovede? „Skúste detail, AI z toho ťahá."
 - Hotový skôr? „Uložte do Drive, pomôž kolegovi."
 - Zaseknutí? Preskoč otázku.
-    </aside>
-</div>
-
-<!-- SLIDE 23: Uloženie master promptu -->
-<div class="slide slide-content" data-slide="23">
-    <div class="slide-inner wide">
-        <div class="kicker">Sekcia 1 · uloženie</div>
-        <h1>Uložte master prompt do Google Drive.</h1>
-        <p style="color: var(--text-secondary); font-size: 17px;">4 kroky priamo z Gemini chatu - bez kopírovania a vkladania.</p>
-
-        <div class="cards-grid cols-2" style="margin-top: 24px;">
-            <div class="card">
-                <div class="card-kicker">Krok 1</div>
-                <div class="card-title">3 bodky na konci chatu</div>
-                <div class="card-body" style="font-size: 17px;">Po vygenerovaní finálneho master promptu kliknite na <strong>3 bodky (⋮)</strong> v menu pri AI odpovedi.</div>
-            </div>
-            <div class="card">
-                <div class="card-kicker">Krok 2</div>
-                <div class="card-title">Export do Google Docs</div>
-                <div class="card-body" style="font-size: 17px;">V menu vyberte <strong>„Export to Google Docs"</strong>. Gemini automaticky vytvorí Doc vo vašom Drive.</div>
-            </div>
-            <div class="card">
-                <div class="card-kicker">Krok 3</div>
-                <div class="card-title">Otvorte a premenujte</div>
-                <div class="card-body" style="font-size: 17px;">Kliknite na link, ktorý Gemini ponúka. Doc sa otvorí. Premenujte na <em>„Master prompt - [vaše meno]"</em>.</div>
-            </div>
-            <div class="card" style="border-left: 4px solid var(--orange);">
-                <div class="card-kicker">Krok 4</div>
-                <div class="card-title">Vyčistite obsah</div>
-                <div class="card-body" style="font-size: 17px;">V Doc-u <strong>nechajte len obsah od „ROLA" nižšie</strong>. Všetko nad ňou (úvodný text, „Tu je váš master prompt:" atď.) vymažte.</div>
-            </div>
-        </div>
-
-        <div style="margin-top: 20px; padding: 14px 20px; background: var(--bg-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; font-size: 17px;">
-            <strong style="color: var(--blue);">Prečo do Drive:</strong> Gem (sekcia 3) a NotebookLM (sekcia 2) sa naň priamo napoja. Dostupné z mobilu, doma aj v škole. Verzionovanie automatické.
-        </div>
-    </div>
-    <aside class="notes">
-ULOŽENIE MASTER PROMPTU - 2 minúty (pred share, 14:55-14:57)
-
-Účel slidu:
-- Praktický návod ako dostať master prompt z Gemini chatu do Drive
-- Bez copy-paste manévra - Gemini má built-in Export do Docs
-
-Čo povedať:
-„Keď máte hotový master prompt, neukladajte si ho kopírovaním. Gemini má export priamo do Google Docs - 3 kliky a máte to v Drive."
-
-LIVE DEMO (ak je čas, krátka 30s ukážka):
-1. Otvor svoj Gemini chat s master promptom
-2. Klikni na 3 bodky pri odpovedi
-3. Ukáž menu „Export to Google Docs"
-4. Klikni - ukáž že Gemini hovorí „I've created a document for you" + link
-5. Klikni link - otvorí sa Doc v novom tabe
-6. Premenuj (klik na názov hore)
-7. Vymaž úvod, nechaj len od ROLA dole
-
-Pointa o vyčistení:
-- Gemini do Doc-u dáva aj svoj „chatový" text typu „Tu je váš master prompt podľa vašich odpovedí:"
-- To nepotrebujeme - keď to neskor vložíme do Gem Instructions, čistý text = lepší výsledok
-- Začiatok dokumentu má byť presne „Si učiteľ..." alebo „ROLA: Si učiteľ..."
     </aside>
 </div>
 
@@ -2221,6 +2215,66 @@ Time check: po 15:05 prejdi na divider sekcia 2 (prestávka 15:10).
     </aside>
 </div>
 
+<!-- SLIDE 23: Uloženie master promptu -->
+<div class="slide slide-content" data-slide="23">
+    <div class="slide-inner wide">
+        <div class="kicker">Sekcia 1 · uloženie finálnej verzie</div>
+        <h1>Uložte master prompt do Google Drive.</h1>
+        <p style="color: var(--text-secondary); font-size: 17px;">Teraz, keď ste master prompt dali AI ohodnotiť a vylepšili ho, uložíme finálnu verziu. 4 kroky priamo z Gemini chatu - bez kopírovania a vkladania.</p>
+
+        <div class="cards-grid cols-2" style="margin-top: 24px;">
+            <div class="card">
+                <div class="card-kicker">Krok 1</div>
+                <div class="card-title">3 bodky na konci chatu</div>
+                <div class="card-body" style="font-size: 17px;">Po vygenerovaní finálneho master promptu kliknite na <strong>3 bodky (⋮)</strong> v menu pri AI odpovedi.</div>
+            </div>
+            <div class="card">
+                <div class="card-kicker">Krok 2</div>
+                <div class="card-title">Export do Google Docs</div>
+                <div class="card-body" style="font-size: 17px;">V menu vyberte <strong>„Export to Google Docs"</strong>. Gemini automaticky vytvorí Doc vo vašom Drive.</div>
+            </div>
+            <div class="card">
+                <div class="card-kicker">Krok 3</div>
+                <div class="card-title">Otvorte a premenujte</div>
+                <div class="card-body" style="font-size: 17px;">Kliknite na link, ktorý Gemini ponúka. Doc sa otvorí. Premenujte na <em>„Master prompt - [vaše meno]"</em>.</div>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--orange);">
+                <div class="card-kicker">Krok 4</div>
+                <div class="card-title">Vyčistite obsah</div>
+                <div class="card-body" style="font-size: 17px;">V Doc-u <strong>nechajte len obsah od „ROLA" nižšie</strong>. Všetko nad ňou (úvodný text, „Tu je váš master prompt:" atď.) vymažte.</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px; padding: 14px 20px; background: var(--bg-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; font-size: 17px;">
+            <strong style="color: var(--blue);">Prečo do Drive:</strong> Gem (sekcia 3) a NotebookLM (sekcia 2) sa naň priamo napoja. Dostupné z mobilu, doma aj v škole. Verzionovanie automatické.
+        </div>
+    </div>
+    <aside class="notes">
+ULOŽENIE MASTER PROMPTU - 2 minúty (pred share, 14:55-14:57)
+
+Účel slidu:
+- Praktický návod ako dostať master prompt z Gemini chatu do Drive
+- Bez copy-paste manévra - Gemini má built-in Export do Docs
+
+Čo povedať:
+„Keď máte hotový master prompt, neukladajte si ho kopírovaním. Gemini má export priamo do Google Docs - 3 kliky a máte to v Drive."
+
+LIVE DEMO (ak je čas, krátka 30s ukážka):
+1. Otvor svoj Gemini chat s master promptom
+2. Klikni na 3 bodky pri odpovedi
+3. Ukáž menu „Export to Google Docs"
+4. Klikni - ukáž že Gemini hovorí „I've created a document for you" + link
+5. Klikni link - otvorí sa Doc v novom tabe
+6. Premenuj (klik na názov hore)
+7. Vymaž úvod, nechaj len od ROLA dole
+
+Pointa o vyčistení:
+- Gemini do Doc-u dáva aj svoj „chatový" text typu „Tu je váš master prompt podľa vašich odpovedí:"
+- To nepotrebujeme - keď to neskor vložíme do Gem Instructions, čistý text = lepší výsledok
+- Začiatok dokumentu má byť presne „Si učiteľ..." alebo „ROLA: Si učiteľ..."
+    </aside>
+</div>
+
 <!-- SLIDE 25: Sekcia 2 divider -->
 <div class="slide slide-section" data-slide="25">
     <div class="slide-inner">
@@ -2269,6 +2323,57 @@ Pre učiteľov je NotebookLM zlato:
 - Nahráš ŠVP, TVVP, učebnicu
 - AI môže odpovedať len z toho
 - Žiadne vymýšľanie obsahu, ktorý nie je v kurikule
+    </aside>
+</div>
+
+<!-- SLIDE 26b: NotebookLM - najprv zdroje, potom otázka (NOVÝ 15.6.2026) -->
+<div class="slide slide-content" data-slide="26b">
+    <div class="slide-inner wide">
+        <div class="kicker">Sekcia 2 · zlaté pravidlo</div>
+        <h1>Najprv zdroje, až potom otázka.</h1>
+        <p style="color: var(--text-secondary);">NotebookLM sám nič nevyhľadáva. Kým mu nedáte zdroje, nemá z čoho odpovedať.</p>
+        <div class="cards-grid cols-2" style="margin-top: 24px;">
+            <div class="card" style="border-left: 4px solid var(--orange);">
+                <div class="card-kicker">❌ Častý omyl</div>
+                <div class="card-title">„Nájdi mi video o fotosyntéze"</div>
+                <div class="card-body" style="font-size: 16px;">Do prázdneho notebooku napíšete úlohu do chatu - a nič sa nedeje. NotebookLM nie je vyhľadávač, neprehľadáva internet.</div>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--green);">
+                <div class="card-kicker">✅ Správny postup</div>
+                <div class="card-title">1. Pridaj zdroje → 2. Pýtaj sa</div>
+                <div class="card-body" style="font-size: 16px;">Najprv <strong>+ Pridať zdroj</strong> (PDF, odkaz, YouTube s titulkami, alebo Deep Research). Až keď sú zdroje vľavo, pýtajte sa v chate.</div>
+            </div>
+        </div>
+        <div class="cards-grid cols-2" style="margin-top: 16px; gap: 12px;">
+            <div class="card" style="padding: 12px 16px;">
+                <div class="card-kicker">Výber zdrojov</div>
+                <div class="card-body" style="font-size: 15px;">Pri konkrétnej úlohe <strong>odznačte</strong> nesúvisiace zdroje vľavo - inak sa vám do kvízu prirástne aj iná téma. Menej zdrojov = presnejší výstup.</div>
+            </div>
+            <div class="card" style="padding: 12px 16px;">
+                <div class="card-kicker">Jazyk a dĺžka</div>
+                <div class="card-body" style="font-size: 15px;">Jazyk výstupu občas zlyhá - napíšte ho <strong>priamo do promptu</strong> („odpovedz po slovensky"). Dĺžku podcastu/videa tiež zadajte slovne („urob 2-minútový").</div>
+            </div>
+        </div>
+        <div style="margin-top: 14px; padding: 12px 18px; background: var(--bg-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; font-size: 16px;">
+            <strong style="color: var(--blue);">Slovník:</strong> v NotebookLM je <strong>kvíz = test</strong>, <strong>flashcards = kartičky na precvičovanie</strong>. Hľadáte ich v paneli Studio.
+        </div>
+    </div>
+    <aside class="notes">
+NAJPRV ZDROJE - 3 minúty (NOVÝ SLIDE)
+
+PREČO TENTO SLIDE (z 1. behu 18.5. - najväčší opakovaný zmätok dňa):
+- Viacero účastníkov písalo do chatu "nájdi mi video/zdroj" a čudovali sa, že to nefunguje. Nepochopili, že NotebookLM sám nevyhľadáva.
+- Príliš veľa zdrojov bez selekcie → kvízy nevekovo primerané, generovalo sa "dejiny pedagogiky" namiesto kvízu (Monika čakala 7 min).
+- Jazyk výstupu zlyhával (raz SK namiesto EN, raz naopak).
+- Účastníčka hľadala "testy", nenašla - lebo to je "kvíz".
+
+Ako to odmoderovať:
+- "Toto je najdôležitejšie pravidlo NotebookLM. Je to opak Gemini."
+- Gemini = nájde a vymyslí. NotebookLM = odpovedá LEN z toho, čo mu dáte.
+- Ukáž živo: prázdny notebook → napíš otázku → nič. Potom pridaj zdroj → tá istá otázka → funguje.
+- Selekcia zdrojov: pri kvíze pre 3. ročník odznač osnovy pre iný ročník, inak sa zmieša.
+
+NÁVÄZNOSŤ: tento slide je tesne pred "10 typov výstupov" - logicky: najprv vieš ako dať zdroje, potom čo z nich vyrobíš.
     </aside>
 </div>
 
@@ -2348,7 +2453,7 @@ STUDIO 10 TYPOV - 2 minúty (15:23-15:25)
 <div class="slide slide-content" data-slide="28">
     <div class="slide-inner">
         <div class="kicker">Sekcia 2 · princípy</div>
-        <h1>5 princípov kvalitného Studio výstupu.</h1>
+        <h1>6 princípov kvalitného Studio výstupu.</h1>
         <div class="cards-grid cols-1" style="margin-top: 28px;">
             <div class="card">
                 <div class="card-kicker">Princíp 1</div>
@@ -2522,17 +2627,18 @@ Praktické použitie:
 <div class="slide slide-content" data-slide="31">
     <div class="slide-inner">
         <div class="kicker">Sekcia 2 · iterácia</div>
-        <h1>Iterujte cez chat, nie cez nový výstup.</h1>
-        <div class="cards-grid cols-2" style="margin-top: 32px;">
+        <h1>Vylepšujte výstup v chate, negenerujte ho odznova.</h1>
+        <p style="color: var(--text-secondary);">Keď vám prvý výstup celkom nesedí, nezačínajte od nuly. Povedzte AI v chate, čo zmeniť - upraví len to.</p>
+        <div class="cards-grid cols-2" style="margin-top: 24px;">
             <div class="card" style="border-left: 4px solid var(--orange);">
                 <div class="card-kicker">Pomalý spôsob</div>
-                <div class="card-title">Generujte - zmažte - opakujte</div>
-                <div class="card-body">1. Generujte zvukový prehľad. 2. Nepáči sa. 3. Zmažte, znova generujte. 4. Nepáči sa. 5. Zmažte, znova generujte.<br><br><em>Trvá 15-30 min na výstup.</em></div>
+                <div class="card-title">Zmazať a generovať odznova</div>
+                <div class="card-body">Výstup sa nepáči, tak ho zmažete a necháte vygenerovať nanovo. A znova. A znova. Zakaždým iný výsledok, strácate aj to dobré z predošlého.<br><br><em>Trvá 15-30 min na jeden výstup.</em></div>
             </div>
             <div class="card" style="border-left: 4px solid var(--green);">
                 <div class="card-kicker">Rýchly spôsob</div>
-                <div class="card-title">Generujte - iterujte cez chat</div>
-                <div class="card-body">1. Generuj prvý výstup. 2. V chate: „Skráť na 3 minúty". 3. „Pridajte príklad s deťmi". 4. „Zameraj sa na chlorofyl". 5. Hotovo.<br><br><em>Trvá 3-5 min, postupné zlepšenie.</em></div>
+                <div class="card-title">Postupne doladiť v chate</div>
+                <div class="card-body">Necháte vygenerovať prvý výstup a potom ho v chate ladíte: „skráť na 3 minúty", „pridaj príklad pre deti", „vynechaj slovo chlorofyl". AI mení len to, čo poviete.<br><br><em>Trvá 3-5 min, výstup sa postupne zlepšuje.</em></div>
             </div>
         </div>
     </div>
@@ -2554,81 +2660,63 @@ Príklad iterácie:
     </aside>
 </div>
 
-<!-- SLIDE 32: AP tri roviny -->
+<!-- SLIDE 32: AP právny základ (zlúčené tri roviny + §44, 15.6.2026) -->
 <div class="slide slide-content" data-slide="32">
-    <div class="slide-inner">
+    <div class="slide-inner wide">
         <div class="kicker">Sekcia 2 · autorské práva #1</div>
-        <h1>AI obrázky a autorské práva - tri roviny.</h1>
-        <div class="cards-grid cols-1" style="margin-top: 32px;">
-            <div class="card">
-                <div class="card-kicker">Rovina 1</div>
-                <div class="card-title">Trénovacie dáta</div>
-                <div class="card-body">AI sa učila z miliárd obrázkov, niektoré chránené. Disney + Universal žalujú Midjourney (prípad 2:25-cv-05275, trial koniec 2026).</div>
+        <h1>AI obrázky a autorské práva - právny základ.</h1>
+        <div class="two-col" style="margin-top: 20px;">
+            <div>
+                <h3>Tri roviny, ktoré treba vedieť</h3>
+                <div style="margin-top: 12px; padding: 10px 16px; border-left: 3px solid var(--text-secondary); margin-bottom: 10px;">
+                    <strong>1 · Trénovacie dáta.</strong> AI sa učila z miliárd obrázkov, niektoré chránené. Disney + Universal žalujú Midjourney (trial koniec 2026).
+                </div>
+                <div style="padding: 10px 16px; border-left: 3px solid var(--text-secondary); margin-bottom: 10px;">
+                    <strong>2 · Autorstvo výstupu.</strong> US Supreme Court (2/2026): čisto AI generované dielo nemá autorské práva. V SR § 3 AZ - autor je len fyzická osoba.
+                </div>
+                <div style="padding: 10px 16px; border-left: 3px solid var(--orange);">
+                    <strong>3 · Vaše použitie ako učiteľ.</strong> § 44 AZ vzdelávacia výnimka <strong>nepokrýva</strong> generovanie nových diel cez AI - viď vpravo.
+                </div>
             </div>
-            <div class="card">
-                <div class="card-kicker">Rovina 2</div>
-                <div class="card-title">Autorstvo výstupu</div>
-                <div class="card-body">US Supreme Court (február 2026) potvrdil: čisto AI generované dielo nemá autorské práva. V SR § 3 AZ - autor je len fyzická osoba.</div>
-            </div>
-            <div class="card">
-                <div class="card-kicker">Rovina 3</div>
-                <div class="card-title">Vaše použitie ako učiteľ</div>
-                <div class="card-body">§ 44 AZ SR vzdelávacia výnimka NEPOKRÝVA generovanie nových diel cez AI. Vysvetlíme na ďalšom slide.</div>
+            <div>
+                <h3>§ 44: citujem originál vs vytváram derivát</h3>
+                <div class="cards-grid cols-1" style="margin-top: 12px; gap: 10px;">
+                    <div class="card" style="border-left: 4px solid var(--green); padding: 12px 16px;">
+                        <div class="card-kicker">§ 44 dovoľuje · použitie</div>
+                        <div class="card-body" style="font-size: 15px;">Premietnuť úryvok filmu, ukázať stránku učebnice, zacitovať knihu, pustiť pesničku.</div>
+                    </div>
+                    <div class="card" style="border-left: 4px solid var(--orange); padding: 12px 16px;">
+                        <div class="card-kicker">§ 44 nedovoľuje · derivát</div>
+                        <div class="card-body" style="font-size: 15px;">Vygenerovať „Mickey vysvetľujúci fotosyntézu", pýtať „v štýle Pixar", zverejniť AI obrázok Disney postavy (§ 19 ods. 4 AZ).</div>
+                    </div>
+                </div>
+                <div style="margin-top: 12px; padding: 12px 18px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 16px;">
+                    <strong>Pointa:</strong> § 44 = citujem originál. AI generovanie chráneného = vytváram derivát.
+                </div>
             </div>
         </div>
     </div>
     <aside class="notes">
-AP TRI ROVINY - 2 minúty (15:40-15:42)
+AP PRÁVNY ZÁKLAD (zlúčené tri roviny + §44) - 3 minúty (15:40-15:43)
 
 Čo povedať:
-- Než urobíte prvý AI obrázok do prezentácie pre deti, musíte vedieť tri veci
-- Zachraňujú vás pred chybami, ktoré robí 90% učiteľov
+- Než urobíte prvý AI obrázok do prezentácie pre deti, musíte vedieť tri veci (ľavá strana).
+- Rovina 1: nie vaša vec, ale prečo nepoužívať „v štýle Disney".
+- Rovina 2: AI obrázok nemá autora - nemôžete si ho ani „prisvojiť".
+- Rovina 3 → vedie priamo na § 44 (pravá strana).
 
-Rovina 1: nie je vaša vec, ale dobre to vedieť - prečo by ste nemali používať „v štýle Disney"
-Rovina 2: AI obrázok nemá autora - takže si ho v podstate nemôžete ani „prisvojiť"
-Rovina 3: § 44 ťa nekryje pri AI generovaní - ďalší slide
-    </aside>
-</div>
+§ 44 - hlavná konfúzia:
+- Učitelia si myslia, že § 44 ich kryje vždy. Kryje len pri POUŽITÍ originálu.
+- „Ak premietnete úryvok filmu, môžete. Ak vygenerujete Mickey Mousea cez AI, nemôžete - to je nový derivát."
 
-<!-- SLIDE 33: AP § 44 -->
-<div class="slide slide-content" data-slide="33">
-    <div class="slide-inner">
-        <div class="kicker">Sekcia 2 · autorské práva #2</div>
-        <h1>§ 44 - citujem originál (môžem) vs vytváram derivát (nemôžem).</h1>
-        <div class="cards-grid cols-2" style="margin-top: 32px;">
-            <div class="card" style="border-left: 4px solid var(--green);">
-                <div class="card-kicker">§ 44 vám dovoľuje</div>
-                <div class="card-title">Použitie existujúceho diela</div>
-                <div class="card-body">Premietnuť úryvok filmu, ukázať stránku z učebnice, zacitovať knihu v prezentácii, pustiť pesničku.<br><br><em>Spoločný menovateľ: POUŽITIE existujúceho diela.</em></div>
-            </div>
-            <div class="card" style="border-left: 4px solid var(--orange);">
-                <div class="card-kicker">§ 44 NEDOVOĽUJE</div>
-                <div class="card-title">Vytvorenie odvodeného diela</div>
-                <div class="card-body">§ 19 ods. 4 AZ - vygenerovať „Mickey vysvetľujúci fotosyntézu", pýtať „v štýle Pixar", zverejniť AI obrázok Disney postavy.<br><br><em>AI obrázok chráneného = derivátne dielo.</em></div>
-            </div>
-        </div>
-        <div style="margin-top: 24px; padding: 16px 22px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0;">
-            <strong>Pointa:</strong> § 44 = citujem originál. AI generovanie chráneného = vytváram derivát.
-        </div>
-    </div>
-    <aside class="notes">
-AP § 44 - 2 minúty (15:42-15:44)
-
-Hlavná konfúzia:
-- Učitelia si myslia, že § 44 ich kryje
-- Kryje, ale len pri POUŽITÍ originálu
-- Vygenerovať Mickeyho cez AI = vytváram nový derivát
-- To § 44 nepokrýva
-
-Čo povedať:
-„Ak premietnete úryvok filmu, môžete. Ak vygenerujete obrázok Mickey Mousea, nemôžete. Rozdiel je medzi použitím a tvorbou nového diela."
+POZNÁMKA: tento slide vznikol zlúčením pôvodných dvoch (tri roviny + §44) pre úsporu času. Tok: právny základ na 1 slide → praktické tipy → AI Act.
     </aside>
 </div>
 
 <!-- SLIDE 34: AP praktické tipy -->
 <div class="slide slide-content" data-slide="34">
     <div class="slide-inner">
-        <div class="kicker">Sekcia 2 · autorské práva #3</div>
+        <div class="kicker">Sekcia 2 · autorské práva #2</div>
         <h1>Praktické tipy pre prompty.</h1>
         <p style="color: var(--text-secondary);">V prompte vždy zahrň ochrannú formuláciu.</p>
         <div style="margin-top: 28px; padding: 20px 24px; background: var(--bg-light); border-radius: var(--card-radius); font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 18px; line-height: 1.6; color: var(--text-primary);">
@@ -2668,7 +2756,7 @@ Pre Gemini/Imagen výhody (NIE pre MidJourney):
 <!-- SLIDE 35: AP AI Act 2026 -->
 <div class="slide slide-content" data-slide="35">
     <div class="slide-inner">
-        <div class="kicker">Sekcia 2 · autorské práva #4</div>
+        <div class="kicker">Sekcia 2 · autorské práva #3</div>
         <h1>AI Act 2026 - čo sa mení od 2.8.2026.</h1>
         <div class="cards-grid cols-2" style="margin-top: 32px;">
             <div class="card">
@@ -3141,13 +3229,13 @@ WORKFLOW ZHRNUTIE - 1 minúta (pred prestávkou)
     <div class="slide-inner">
         <div class="section-num">Záver · 15 min</div>
         <h1>Záver + zadanie.</h1>
-        <p>Krátko 3 veci: etika, vaše zadanie na 10.6., a spätná väzba.</p>
+        <p>Krátko 3 veci: etika, vaše zadanie na 29.6., a spätná väzba.</p>
     </div>
     <aside class="notes">
 SECTION DIVIDER ZÁVER - 30 sekúnd (17:56)
 
 Otvorenie:
-„Sme na konci. Krátko 3 veci: etika, vaše zadanie na 10.6., a spätná väzba."
+„Sme na konci. Krátko 3 veci: etika, vaše zadanie na 29.6., a spätná väzba."
     </aside>
 </div>
 
@@ -3185,50 +3273,102 @@ Akcent:
     </aside>
 </div>
 
-<!-- SLIDE 49: Záverečná prezentácia -->
-<div class="slide slide-content" data-slide="49">
+<!-- SLIDE 48b: Čo robí záverečnú prácu výbornou (NOVÝ 15.6.2026) -->
+<div class="slide slide-content" data-slide="48b">
     <div class="slide-inner wide">
-        <div class="kicker">Záver · zadanie 10.6.</div>
-        <h1>Záverečná prezentácia - 10.6.2026, 20:00.</h1>
-        <p style="color: var(--text-secondary); font-size: 17px;">Online ZOOM. Záverečnú prezentáciu nahrajte do svojho užívateľského konta v Inšpirácia.live.</p>
-
-        <div class="task-box" style="margin-top: 24px;">
-            <p style="font-weight: 700; color: var(--blue); font-size: 19px; margin: 0 0 12px 0;">Obsah prezentácie:</p>
-            <ul class="bullets" style="margin: 0;">
-                <li><strong>Stručný popis problému</strong> - predmet, ročník, prečo je to opakovaný problém.</li>
-                <li><strong>Ukážka AI systému</strong> - master prompt + Gem + napojenie na NotebookLM / Drive.</li>
-                <li><strong>Minimálne jeden overený materiál</strong> - pracovný list, kvíz alebo príprava hodiny + ako ste ho overili oproti ŠVP.</li>
-                <li><strong>Reflexia kritického hodnotenia AI výstupov</strong> - kde AI zlyhala, čo ste museli opraviť.</li>
-                <li><strong>Plán použitia počas šk. roka</strong> - pre aké témy, očakávaná časová úspora.</li>
-                <li><strong>Návrhy na ďalších asistentov</strong> - aké ďalšie Gemy by ste si vytvorili pre svoju prax.</li>
-            </ul>
-        </div>
-
-        <div style="margin-top: 20px; padding: 14px 20px; background: var(--bg-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 17px;">
-            <strong style="color: var(--orange);">Alternatíva ak sa nemôžete zúčastniť naživo:</strong> odovzdanie materiálov vo formáte DOCX a PPTX vopred. V prípade neúčasti napíšte mail na <strong>inovacne@inspiracia.live</strong> s ospravedlnením (uveďte názov vzdelávania a dátum záverečnej prezentácie).
+        <div class="kicker">Záver · pred zadaním</div>
+        <h1>Čo robí záverečnú prácu výbornou.</h1>
+        <p style="color: var(--text-secondary);">Skúsenosti z minulého behu - takto vyzerá silná práca a čomu sa vyhnúť.</p>
+        <div class="cards-grid cols-2" style="margin-top: 24px;">
+            <div class="card" style="border-left: 4px solid var(--green);">
+                <div class="card-kicker">✅ Robte toto</div>
+                <div class="card-body" style="font-size: 17px;">
+                    <strong>Kvantifikujte úsporu konkrétne.</strong> Napr. „príprava 4 variantov písomky: 40 min → 10 min."<br><br>
+                    <strong>Pomenujte konkrétne zlyhanie AI.</strong> Kde sa AI pomýlila a čo ste opravili (napr. zmiešaná rovnica, zlé jednotky).<br><br>
+                    <strong>Krížová kontrola.</strong> Nechajte jeden Gem (alebo druhý model) posúdiť výstup prvého.<br><br>
+                    <strong>Sebakritika namiesto obviňovania AI.</strong> Napr. „Gem dal zlú odpoveď, lebo som v master prompte zabudol uviesť ročník - chyba bola v mojom vstupe, nie v AI."
+                </div>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--orange);">
+                <div class="card-kicker">❌ Vyhnite sa</div>
+                <div class="card-body" style="font-size: 17px;">
+                    <strong>Len odhad „pomohlo mi to".</strong> Bez reálneho porovnania bežný chat vs. váš Gem na jednom príklade.<br><br>
+                    <strong>Nedostupné odkazy.</strong> Nezdieľaný Google Doc alebo Gem - hodnotiteľ ich neotvorí.<br><br>
+                    <strong>Slidy len so screenshotmi.</strong> Kľúčové slidy musia mať aj text, nielen obrázok.<br><br>
+                    <strong>Príliš široký rozsah.</strong> Gem „pre všetky ročníky a predmety" funguje horšie ako jeden konkrétny.
+                </div>
+            </div>
         </div>
     </div>
     <aside class="notes">
-ZÁVEREČNÁ PREZENTÁCIA - 5 minút (17:59-18:04)
+ČO ROBÍ PRÁCU VÝBORNOU - 3 minúty (NOVÝ SLIDE)
+
+PREČO TENTO SLIDE (z hodnotenia 1. behu 10.6.):
+- Najčastejší nedostatok: chýbajúce porovnanie pred/po (väčšina dala len odhad úspory, nie reálne porovnanie kvality).
+- Nezdieľané/nedostupné linky (Google Doc, Gem) - hodnotiteľ ich nevedel otvoriť.
+- Slidy len so screenshotmi bez textu.
+- Príliš široký rozsah Gemu → horšie výstupy.
+
+Ako to odmoderovať:
+- "Nech vám ukážem, čo robilo práce z minulého behu silnými - a kde najčastejšie padali."
+- Ľavý stĺpec = vzor, pravý = časté chyby. Bez mien - anonymizované príklady.
+- Akcent na pravý dolný: sebakritika. "Najlepšie práce nehovorili 'AI je nepoužiteľná', ale 'môj vstup bol neúplný'. To je AI mindset."
+- Toto je príprava na ďalší slide (zadanie) - nech vedia latku predtým, než počujú čo odovzdať.
+    </aside>
+</div>
+
+<!-- SLIDE 49: Záverečná prezentácia -->
+<div class="slide slide-content" data-slide="49">
+    <div class="slide-inner wide">
+        <div class="kicker">Záver · zadanie</div>
+        <h1>Záverečná prezentácia - <span class="accent">29.6.2026, 17:00</span>.</h1>
+        <p style="color: var(--text-secondary); font-size: 17px;">Online ZOOM. Materiály nahrajte do svojho užívateľského konta v Inšpirácia.live <strong>vopred</strong> - neprezentuje sa naživo cez zdieľanie obrazovky.</p>
+
+        <div class="two-col" style="margin-top: 20px;">
+            <div class="task-box" style="margin: 0;">
+                <p style="font-weight: 700; color: var(--blue); font-size: 18px; margin: 0 0 10px 0;">Čo odovzdať (checklist):</p>
+                <ul class="bullets check" style="margin: 0; font-size: 16px;">
+                    <li><strong>Popis problému</strong> - predmet, ročník, prečo je to opakovaný problém.</li>
+                    <li><strong>Master prompt</strong> - ako samostatný súbor v prílohe (nie len odkaz).</li>
+                    <li><strong>Gem + NotebookLM</strong> - odkaz alebo screenshot; overte zdieľanie „ktokoľvek s odkazom".</li>
+                    <li><strong>Aspoň 1 overený materiál</strong> - pracovný list / kvíz / príprava hodiny + ako ste ho overili oproti ŠVP.</li>
+                    <li><strong>Povinné: porovnanie pred / po</strong> - ten istý prompt v bežnom chate vs. vo vašom Geme, s konkrétnym rozdielom a časom.</li>
+                    <li><strong>Reflexia</strong> - kde AI zlyhala, čo ste opravili.</li>
+                    <li><strong>Plán použitia</strong> + návrhy ďalších Gemov.</li>
+                </ul>
+            </div>
+            <div>
+                <div style="padding: 14px 18px; background: var(--green-light, #eef7ee); border-left: 4px solid var(--green); border-radius: 0 8px 8px 0; font-size: 16px;">
+                    <strong style="color: var(--green);">Príklad dobrej reflexie pred/po:</strong><br>
+                    „Pred: prípravu 4 variantov písomky mi trvalo 40 min. Po: Gem vygeneroval varianty B-D za 5 min, skontrolovala som ich za 10 min. Úspora ~25 min na písomku. Musela som opraviť jednu zmiešanú rovnicu - chyba bola, že som v master prompte neuviedla úroveň."
+                </div>
+                <div style="margin-top: 14px; padding: 12px 18px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 15px;">
+                    Odovzdávate <strong>vlastnú prácu</strong> (nie materiály z tohto školenia). Kľúčové slidy majú mať text, nielen screenshot.
+                </div>
+            </div>
+        </div>
+    </div>
+    <aside class="notes">
+ZÁVEREČNÁ PREZENTÁCIA - 5 minút
 
 Čo povedať:
-- Zadanie na 10. júna 2026, 20:00 - online cez ZOOM
-- 6 bodov v prezentácii (5 hlavných + návrhy ďalších asistentov)
-- Nahrajte do svojho užívateľského konta v Inšpirácia.live PRED 10.6. - nie naživo cez share screen
-- Detail pošlem emailom najneskôr 1.6.2026
+- Zadanie na 29. júna 2026, 17:00 - online cez ZOOM
+- Materiály nahrajte do konta v Inšpirácia.live VOPRED - neprezentuje sa naživo cez share screen
+- Detail pošlem emailom včas pred termínom
+
+ČO SA ZMENILO OPROTI 1. BEHU (a prečo):
+- Pridaný explicitný CHECKLIST čo odovzdať - v 1. behu sa opakovane pýtali "čo vlastne odovzdáme?", jeden poslal cudzí súbor.
+- POVINNÉ porovnanie pred/po - najčastejší nedostatok 1. behu (väčšina dala len odhad úspory, nie reálne porovnanie).
+- Master prompt + Gem ako PRÍLOHA, overiť zdieľanie - 2 práce mali nedostupné linky.
+- "Odovzdávate vlastnú prácu" - jeden účastník nahral lektorskú prezentáciu.
+- Príklad dobrej reflexie priamo na slide - aby vedeli, ako má vyzerať.
 
 Akcent:
 - Toto nie je test - je to príležitosť ukázať, čo ste vytvorili
 - Komisia: ja + 1-2 hostia (oznámim emailom)
-- Cieľ: aby ste po 18.5. nezabudli, čo ste tu spravili
+- Reflexia = dôkaz, že ste výstupy aktívne kontrolovali, nie len pasívne prijali (prepojenie na 5 kontrolných otázok zo sekcie 3)
 
-Alternatíva pre neúčasť:
-- Vopred odovzdané materiály vo formáte DOCX a PPTX
-- Mail na inovacne@inspiracia.live s ospravedlnením
-- Treba uviesť: názov vzdelávania (Inovačné vzdelávanie - AI v praxi) + dátum záverečnej prezentácie (10.6.2026)
-
-Bod 4 (Reflexia kritického hodnotenia) - prepojenie na sekcia 3:
-„Pamätajte: v sekcii 3 sme robili 5 kontrolných otázok a AI ako kritik. Toto je presne tá reflexia, ktorá patrí do prezentácie - dôkaz, že ste vystupy aktívne kontrolovali, nie len pasívne prijali."
+POZOR - termín a čas hovor jednoznačne: 29.6.2026, 17:00 (večer? nie - poobede o 17:00). V 1. behu bol zmätok 26.5./26.6. a "ráno či večer".
     </aside>
 </div>
 
@@ -3239,16 +3379,7 @@ Bod 4 (Reflexia kritického hodnotenia) - prepojenie na sekcia 3:
         <h1>Najdôležitejšia vec, ktorú si dnes odnášate.</h1>
         <p style="color: var(--text-secondary);">Napíšte do chatu jednou vetou najdôležitejšiu vec, ktorú ste si dnes uvedomili.</p>
 
-        <div style="margin-top: 32px;">
-            <h3>Príklady</h3>
-            <ul class="bullets" style="font-style: italic;">
-                <li>„Master prompt mi šetrí 2h týždenne."</li>
-                <li>„NotebookLM = jediná AI bez halucinácií."</li>
-                <li>„Customize button mi zmenil výstup na 100 %."</li>
-            </ul>
-        </div>
-
-        <div style="margin-top: 28px; padding: 18px 22px; background: var(--bg-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0;">
+        <div style="margin-top: 32px; padding: 18px 22px; background: var(--bg-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0;">
             <strong style="color: var(--blue);">Bonus do chatu:</strong> Pridajte vetu „Najťažšie pre mňa bolo..." - bude to spätná väzba pre lektora.
         </div>
     </div>
@@ -3273,20 +3404,20 @@ Bonus „Najťažšie pre mňa bolo":
 <div class="slide slide-title" data-slide="51">
     <div class="slide-inner">
         <h1 style="font-size: 1.2em; margin-bottom: 24px;">Otázky?</h1>
-        <h1>Ďakujem za pozornosť.<br><span class="accent">Vidíme sa 10.6.</span></h1>
-        <p class="tagline"><em>Záverečná prezentácia</em><br>10.6.2026 · 20:00 · ZOOM</p>
+        <h1>Ďakujem za pozornosť.<br><span class="accent">Vidíme sa 29.6.</span></h1>
+        <p class="tagline"><em>Záverečná prezentácia</em><br>29.6.2026 · 17:00 · ZOOM</p>
         <div class="meta">info@inspiracia.live</div>
     </div>
     <aside class="notes">
 ZÁVEREČNÝ SLIDE - 3 minúty (18:08-18:11)
 
 Čo povedať:
-„Veľmi vám ďakujem. Bolo to 5 hodín, ale odviedli ste skvelú prácu. Pošlem email s odkazmi a podrobnosťami k 10.6. najneskôr 1.6. Otázky? Kamery zapnuté, mávajte na seba - vidíme sa 10.6."
+„Veľmi vám ďakujem. Bolo to 5 hodín, ale odviedli ste skvelú prácu. Pošlem email s odkazmi a podrobnosťami k záverečnej prezentácii. Otázky? Kamery zapnuté, mávajte na seba - vidíme sa 29.6."
 
 Po skončení:
 - Záznam (ak je) - poslať Simone na archiváciu
-- Drive bundle nechať dostupný do 30.6.
-- 1.6. - email so zadaním pre 10.6.
+- Drive bundle nechať dostupný do termínu záverečnej prezentácie
+- Email so zadaním pre 29.6. - poslať včas pred termínom
 - Spätná väzba (Google Forms link) - odoslaná účastníkom v poďakovacom emaili
     </aside>
 </div>
@@ -3299,7 +3430,7 @@ Po skončení:
 
 <div class="nav-controls">
     <button class="nav-btn" id="prev-btn" onclick="prevSlide()" title="Predošlý (←)">‹</button>
-    <div class="slide-counter" id="slide-counter">1 / 51</div>
+    <div class="slide-counter" id="slide-counter">1 / 52</div>
     <button class="nav-btn" id="next-btn" onclick="nextSlide()" title="Ďalší (→)">›</button>
     <button class="nav-btn" onclick="cycleZoom()" title="Zväčšiť (+) / Zmenšiť (-) / Reset (0)" id="zoom-btn" style="font-size: 14px; font-weight: 500;">🔍 100%</button>
     <button class="nav-btn" onclick="downloadPdf()" title="Stiahnuť PDF (P)" style="font-size: 15px; font-weight: 500;">📄</button>
