@@ -8,9 +8,7 @@ Interaktívna HTML prezentácia inovačného vzdelávania **„AI v praxi - tvor
 
 **Formát:** 5 hodín online (ZOOM), 35 % teória + 65 % prax, 3 sekcie + záverečná prezentácia
 
-**Termíny:**
-- 18.5.2026 - hlavné vzdelávanie (13:00 - 18:00)
-- 10.6.2026 - záverečná prezentácia (20:00 - 21:00)
+**Aktuálny beh:** 10.8.2026
 
 **Lektor:** Ing. Michal Marko, Digi Compliance
 
@@ -20,9 +18,14 @@ Interaktívna HTML prezentácia inovačného vzdelávania **„AI v praxi - tvor
 
 ## Súbory
 
-- `index.html` - hlavná prezentácia (47 slidov, self-contained, offline-capable)
+- `index.html` - aktuálna prezentácia, beh 10.8.2026 (self-contained, offline-capable)
 - `tahak.html` - 1-stranový A4 ťahák pre účastníkov (print-ready)
 - `assets/` - logo a obrázky
+- `behy/` - archív predchádzajúcich behov
+
+## Archív behov
+
+- `behy/2026-07-13.html` - beh 13.7.2026
 
 ## Ovládanie prezentácie
 
