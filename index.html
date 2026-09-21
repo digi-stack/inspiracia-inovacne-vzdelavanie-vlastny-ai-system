@@ -555,6 +555,120 @@
             margin-right: auto;
         }
 
+
+        /* ===== SLIDE 40b: cenove plany Gemini ===== */
+        .plans {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 26px;
+            align-items: stretch;
+        }
+        .plan {
+            position: relative;
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--card-radius);
+            padding: 26px 22px 22px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow);
+        }
+        .plan.is-featured {
+            border: 2px solid var(--orange);
+            box-shadow: 0 10px 28px rgba(230,57,70,0.18);
+        }
+        .plan-flag {
+            position: absolute;
+            top: -13px;
+            left: 22px;
+            background: var(--orange);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 20px;
+        }
+        .plan-name {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+        .plan.is-featured .plan-name { color: var(--orange); }
+        .plan-price {
+            font-size: 42px;
+            font-weight: 600;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+        }
+        .plan-price small {
+            display: block;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-muted);
+            letter-spacing: 0;
+            margin-top: 2px;
+        }
+        .plan-specs {
+            list-style: none;
+            margin: 18px 0 0;
+            padding: 16px 0 0;
+            border-top: 1px solid var(--border);
+            display: grid;
+            gap: 11px;
+        }
+        .plan-specs li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        .plan-specs li b {
+            font-weight: 600;
+            font-size: 19px;
+            color: var(--text-body);
+            white-space: nowrap;
+        }
+        .plan.is-featured .plan-specs li b { color: var(--orange); }
+        .limit-note {
+            margin-top: 22px;
+            display: flex;
+            gap: 18px;
+            align-items: stretch;
+        }
+        .limit-note .ln-main {
+            flex: 1;
+            padding: 15px 20px;
+            background: var(--orange-light);
+            border-left: 4px solid var(--orange);
+            border-radius: 0 8px 8px 0;
+            font-size: 18px;
+        }
+        .limit-note .ln-side {
+            flex: 0 0 300px;
+            padding: 15px 18px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.45;
+        }
+        @media (max-height: 800px) {
+            .plan { padding: 20px 18px 18px; }
+            .plan-price { font-size: 34px; }
+            .plan-specs li { font-size: 15px; }
+            .plan-specs li b { font-size: 17px; }
+            .limit-note .ln-main { font-size: 16px; }
+        }
+
         /* ===== COMPONENTS ===== */
 
         /* Cards grid */
@@ -1942,31 +2056,44 @@ POZOR: funkcie a politiky sa menia rýchlo - toto je stav k augustu 2026. Nesľu
     <div class="slide-inner wide">
         <div class="kicker">Úvod · limity</div>
         <h1>Čo dostanete zadarmo a čo <span class="accent">za peniaze</span>.</h1>
-        <div class="cards-grid cols-4" style="margin-top: 28px;">
-            <div class="card">
-                <div class="card-kicker">Počítanie limitu</div>
-                <div class="card-title">Nie správy na deň</div>
-                <div class="card-body">Limit je výpočtový. Obnovuje sa <strong>každých 5 hodín</strong>, nad ním je týždenný strop. Presné čísla Google nezverejňuje.</div>
+        <div class="plans">
+            <div class="plan is-featured">
+                <div class="plan-flag">Dnes nám stačí</div>
+                <div class="plan-name">Bez predplatného</div>
+                <div class="plan-price">0 &euro;<small>Gems aj NotebookLM v cene</small></div>
+                <ul class="plan-specs">
+                    <li><span>Koľko textu unesie</span> <b>32k</b></li>
+                    <li><span>Audio nahrávka</span> <b>10 min</b></li>
+                    <li><span>Koľko práce spravíte</span> <b>základ</b></li>
+                </ul>
             </div>
-            <div class="card">
-                <div class="card-kicker">Platené plány</div>
-                <div class="card-title">Plus 2× · Pro 4×</div>
-                <div class="card-body">Násobok oproti bezplatnej verzii. <strong>Ultra</strong> má 5-20× oproti Pro.</div>
+            <div class="plan">
+                <div class="plan-name">Google AI Plus</div>
+                <div class="plan-price">~5 $<small>mesačne</small></div>
+                <ul class="plan-specs">
+                    <li><span>Koľko textu unesie</span> <b>128k</b></li>
+                    <li><span>Audio nahrávka</span> <b>10 min</b></li>
+                    <li><span>Koľko práce spravíte</span> <b>2&times;</b></li>
+                </ul>
             </div>
-            <div class="card">
-                <div class="card-kicker">Koľko textu unesie</div>
-                <div class="card-title">32k · 128k · 1 mil.</div>
-                <div class="card-body">Tokeny: zadarmo / Plus / Pro. Do 32k sa zmestí <strong>kapitola, celá učebnica nie</strong>.</div>
-            </div>
-            <div class="card">
-                <div class="card-kicker">Audio nahrávky</div>
-                <div class="card-title">10 min · 3 hodiny</div>
-                <div class="card-body">Zadarmo do 10 minút, v Pro do 3 hodín.</div>
+            <div class="plan">
+                <div class="plan-name">Google AI Pro</div>
+                <div class="plan-price">~20 $<small>mesačne</small></div>
+                <ul class="plan-specs">
+                    <li><span>Koľko textu unesie</span> <b>1 mil.</b></li>
+                    <li><span>Audio nahrávka</span> <b>3 hod.</b></li>
+                    <li><span>Koľko práce spravíte</span> <b>4&times;</b></li>
+                </ul>
             </div>
         </div>
-        <div style="margin-top: 24px; padding: 16px 22px; background: var(--orange-light); border-left: 4px solid var(--orange); border-radius: 0 8px 8px 0;">
-            <strong>Pre dnešok:</strong> Gems aj NotebookLM sú zadarmo - kvôli kurzu netreba nič platiť. Dlhý zdroj (učebnica, ŠVP) patrí do NotebookLM, nie do chatu.<br><br>
-            <em>Stav k 21.9.2026 podľa support.google.com - Google limity mení priebežne.</em>
+        <div class="limit-note">
+            <div class="ln-main">
+                <strong>Za čo sa platí:</strong> nie za počet správ, ale za <strong>dĺžku textu</strong>, ktorý vie naraz udržať v hlave. Do 32k sa zmestí kapitola, celá učebnica nie - preto dlhé zdroje patria do NotebookLM.
+            </div>
+            <div class="ln-side">
+                Limit sa obnovuje každých <strong>5 hodín</strong>, nad tým je týždenný strop.<br>
+                <em>Stav k 21.9.2026, Google ho mení priebežne.</em>
+            </div>
         </div>
     </div>
     <aside class="notes">
